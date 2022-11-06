@@ -23,9 +23,9 @@
 
     <!-- Default box -->
     <div class="card">
-      <div class="card-header">
+      {{-- <div class="card-header">
         <h3 class="card-title">Title</h3>
-      </div>
+      </div> --}}
       <div class="card-body">
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -56,9 +56,9 @@
           </table>
       </div>
       <!-- /.card-body -->
-      <div class="card-footer">
+      {{-- <div class="card-footer">
         Footer
-      </div>
+      </div> --}}
       <!-- /.card-footer-->
     </div>
     <!-- /.card -->
