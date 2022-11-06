@@ -51,7 +51,8 @@ class AuthController extends Controller
 
 
         if($data){
-            return redirect('/register')->with('success', 'Data Berhasil Disimpan');
+            return redirect('/login')->with('success', 'Data Berhasil Disimpan');
+            
         }else{
             return redirect('/register')->with('error', 'Data Gagal Disimpan');
         }

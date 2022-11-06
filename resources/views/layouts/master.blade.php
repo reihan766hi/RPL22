@@ -41,6 +41,7 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
+@include('sweetalert::alert')
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -127,9 +128,25 @@
       @if (auth()->user()->role == constanta::admin)
           <li class="nav-item">
             <a href="/daftarpengguna" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                Daftar Pengguna
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/daftarbus" class="nav-link">
+              <i class="nav-icon fa fa-bus"></i>
+              <p>
+               Daftar Bus
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/daftararea" class="nav-link">
+              <i class="nav-icon fa fa-globe"></i>
+              <p>
+               Area
               </p>
             </a>
           </li>
@@ -396,7 +413,52 @@
       })
     @endif
 </script>
-@yield('footer')
 
+@yield('footer')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
 </body>
+<script>
+	$('.delete-bus').click(function(){
+		  var akun = $(this).attr('akun-id');
+      var name = $(this).attr('akun-name');
+		  swal({
+		  title: "Yakin  ?",
+		  text: "Mau menghapus " +name + "?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  
+		  if (willDelete) {
+		    window.location = "daftarbus/hapusbus/"+akun;
+		  } 
+		}); 
+	});
+</script>
+<script>
+	$('.delete-area').click(function(){
+		  var akun = $(this).attr('akun-id');
+      var name = $(this).attr('akun-name');
+		  swal({
+		  title: "Yakin  ?",
+		  text: "Mau menghapus " +name + "?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  
+		  if (willDelete) {
+		    window.location = "daftararea/hapusarea/"+akun;
+		  } 
+		}); 
+	});
+</script>
 </html>

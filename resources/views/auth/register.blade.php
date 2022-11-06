@@ -154,7 +154,7 @@
 
       <div class="social-auth-links text-center mb-3">
           <p class="mb-0">
-            <a href="/login" class="text-center">Login</a>
+            <!-- <a href="/login" class="text-center">Login</a> -->
           </p>
       </div>
     </div>
