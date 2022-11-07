@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DaftarPenggunaController;
+use App\Http\Controllers\DaftarBusController;
+use App\Http\Controllers\DaftarAreaController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +29,14 @@ Route::get('/logout',[AuthController::class, 'logout']);
 
 Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/daftarpengguna',[DaftarPenggunaController::class, 'index']);
+    Route::get('/daftarbus',[DaftarBusController::class, 'index']);
+    Route::get('/daftararea',[DaftarAreaController::class, 'index']);
+    Route::post('/daftarbus/tambahbus',[DaftarBusController::class, 'tambahBus']);
+    Route::post('/daftarbus/editbus/{id}',[DaftarBusController::class, 'editBus']);
+    Route::get('/daftarbus/hapusbus/{id}',[DaftarBusController::class, 'hapusBus']);
+    Route::post('/daftararea/tambaharea',[DaftarAreaController::class, 'tambahArea']);
+    Route::post('/daftararea/editarea/{id}',[DaftarAreaController::class, 'editArea']);
+    Route::get('/daftararea/hapusarea/{id}',[DaftarAreaController::class, 'hapusArea']);
+    
 });
 

@@ -41,6 +41,7 @@
             </thead>
             <tbody>
             @foreach ($user as $us)
+              @if($us->role == "pemesan")
                 <tr>
                     <td>{{$us->name}}</td>
                     <td>{{$us->username}}</td>
@@ -50,15 +51,15 @@
                     <td>{{$us->no_hp}}</td>
                     <td>{{$us->role}}</td>
                 </tr>
+              @endif
             @endforeach
-
             </tfoot>
           </table>
       </div>
       <!-- /.card-body -->
-      {{-- <div class="card-footer">
+      <div class="card-footer">
         Footer
-      </div> --}}
+      </div>
       <!-- /.card-footer-->
     </div>
     <!-- /.card -->
