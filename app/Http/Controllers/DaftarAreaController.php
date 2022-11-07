@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 use App\Models\DaftarArea;
 use Illuminate\Http\Request;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DaftarAreaController extends Controller
 {
     public function index(){
-        
+
         $daftararea = DaftarArea::latest()->paginate(10);
         return view('daftararea.index',compact(['daftararea']));
     }

@@ -9,7 +9,7 @@ class DaftarPenggunaController extends Controller
 {
     public function index(){
 
-        $user = User::latest()->paginate(10);
+        $user = User::where('role','=', 'pemesan')->latest()->paginate(10);
         return view('listpengguna.index',compact(['user']));
     }
 }

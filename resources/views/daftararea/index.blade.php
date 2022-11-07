@@ -13,7 +13,7 @@
           </button>
         </div>
 
-        <div class="modal-body">            
+        <div class="modal-body">
           <form action="/daftararea/tambaharea" method="post" enctype="multipart/form-data">
           @csrf
 
@@ -34,7 +34,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-              <button type="submit" class="btn btn-primary">Tambah</button>  
+              <button type="submit" class="btn btn-primary">Tambah</button>
             </div>
           </form>
         </div>
@@ -76,16 +76,16 @@
 
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-              <button type="submit" class="btn btn-primary">Edit</button>  
+              <button type="submit" class="btn btn-primary">Edit</button>
             </div>
-          </form>      
+          </form>
           </div>
           </div>
           <!-- /.modal-content -->
       </div>
         <!-- /.modal-dialog -->
     </div>
-    @endforeach  
+    @endforeach
 </div>
 
 <section class="content-header">
@@ -105,7 +105,7 @@
                     <div class="float-right">
                 </div>
             </div>
-              
+
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -130,10 +130,10 @@
                         <td>{{$da->status}}</td>
                         <td>
                         <button type="button" class="btn  btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit{{$da->id}}">Edit</button> &nbsp
-                           <a href="#" class="btn btn-danger btn-sm delete-area" akun-id="{{$da->id}}" akun-name="{{$da->no_kode_bus}}">Hapus</a>                 
+                           <a href="#" class="btn btn-danger btn-sm delete-area" akun-id="{{$da->id}}" akun-name="{{$da->no_kode_bus}}">Hapus</a>
                         </td>
-                    </tr>    
-                  @endforeach  
+                    </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>
@@ -165,5 +165,26 @@
       });
     });
   </script>
+
+
+<script>
+	$('.delete-area').click(function(){
+		  var akun = $(this).attr('akun-id');
+      var name = $(this).attr('akun-name');
+		  swal({
+		  title: "Yakin  ?",
+		  text: "Mau menghapus " +name + "?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+
+		  if (willDelete) {
+		    window.location = "daftararea/hapusarea/"+akun;
+		  }
+		});
+	});
+</script>
 
   @endsection

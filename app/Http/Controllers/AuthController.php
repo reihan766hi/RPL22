@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
 
     public function __construct(){
 
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => ['logout', 'postregister', 'deleteakun', 'editakun']]);
 
     }
 
@@ -27,7 +28,7 @@ class AuthController extends Controller
 
 
     public function postregister(Request $request){
-       // die(dump($request));
+
         $request->validate([
             'name' => 'required',
             'username' => 'required|unique:users',
@@ -49,13 +50,27 @@ class AuthController extends Controller
             'role' => $request->role,
         ]);
 
+        if($request->register == 'register'){
+            if($data){
+                Alert::success('Sukses', 'Menambah Pengguna');
+                return redirect()->back();
 
-        if($data){
-            return redirect('/login')->with('success', 'Data Berhasil Disimpan');
-            
+            }else{
+                Alert::error('Gagal', 'Menambah Pengguna');
+                return redirect('/daftarpengguna');
+            }
+
+
         }else{
-            return redirect('/register')->with('error', 'Data Gagal Disimpan');
+            if($data){
+                return redirect('/login')->with('success', 'Data Berhasil Disimpan');
+
+            }else{
+                return redirect('/register')->with('error', 'Data Gagal Disimpan');
+            }
         }
+
+
     }
 
     public function postlogin(Request $request){
@@ -82,6 +97,32 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect('/login');
+    }
+
+
+    public function deleteakun($id){
+
+        User::findOrFail($id)->delete();
+        Alert::success('Sukses', 'Menghapus Data Pengguna');
+        return redirect()->back();
+    }
+
+    public function editakun(Request $request,$id){
+
+        $user = User::findOrFail($id);
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->password = Hash::make( $request->password);
+            $user->alamat = $request->alamat;
+            $user->tgl_lahir = date('Y-m-d', strtotime($request->tgl_lahir));
+            $user->no_hp = $request->no_hp;
+            $user->role = $request->role;
+
+        $user->save();
+
+        Alert::success('Sukses', 'Mengedit Data Pengguna');
+        return redirect()->back();
     }
 
 }

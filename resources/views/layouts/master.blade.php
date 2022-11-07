@@ -423,42 +423,4 @@
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 </body>
-<script>
-	$('.delete-bus').click(function(){
-		  var akun = $(this).attr('akun-id');
-      var name = $(this).attr('akun-name');
-		  swal({
-		  title: "Yakin  ?",
-		  text: "Mau menghapus " +name + "?",
-		  icon: "warning",
-		  buttons: true,
-		  dangerMode: true,
-		})
-		.then((willDelete) => {
-		  
-		  if (willDelete) {
-		    window.location = "daftarbus/hapusbus/"+akun;
-		  } 
-		}); 
-	});
-</script>
-<script>
-	$('.delete-area').click(function(){
-		  var akun = $(this).attr('akun-id');
-      var name = $(this).attr('akun-name');
-		  swal({
-		  title: "Yakin  ?",
-		  text: "Mau menghapus " +name + "?",
-		  icon: "warning",
-		  buttons: true,
-		  dangerMode: true,
-		})
-		.then((willDelete) => {
-		  
-		  if (willDelete) {
-		    window.location = "daftararea/hapusarea/"+akun;
-		  } 
-		}); 
-	});
-</script>
 </html>

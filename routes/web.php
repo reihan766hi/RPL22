@@ -37,6 +37,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/daftararea/tambaharea',[DaftarAreaController::class, 'tambahArea']);
     Route::post('/daftararea/editarea/{id}',[DaftarAreaController::class, 'editArea']);
     Route::get('/daftararea/hapusarea/{id}',[DaftarAreaController::class, 'hapusArea']);
-    
+    Route::get('/deleteakun/{id}',[AuthController::class, 'deleteakun']);
+    Route::post('/daftarpengguna/edit/{id}',[AuthController::class, 'editakun']);
+
 });
 
