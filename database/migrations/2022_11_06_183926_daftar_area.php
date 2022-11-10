@@ -15,6 +15,7 @@ class DaftarArea extends Migration
     {
         Schema::create('daftar_areas', function (Blueprint $table) {
             $table->id();
+            $table->string("kode_area");
             $table->string("asal");
             $table->string("tujuan");
             $table->string("status");

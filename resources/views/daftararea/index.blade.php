@@ -16,7 +16,10 @@
         <div class="modal-body">
           <form action="/daftararea/tambaharea" method="post" enctype="multipart/form-data">
           @csrf
-
+          <div class="form-group">
+              <label for="nama">Kode Area</label>
+              <input type="text" class="form-control" name="kodearea"  id="tujuan" placeholder="Kode Area" required>
+            </div>
             <div class="form-group">
               <label for="nama">Asal</label>
               <input type="text" class="form-control" name="asal"  id="tujuan" placeholder="Asal Daerah" required>
@@ -58,6 +61,10 @@
           <div class="modal-body">
           <form action="daftararea/editarea/{{$da->id}}" method="post" enctype="multipart/form-data">
           @csrf
+          <div class="form-group">
+              <label for="nama">Kode Area</label>
+              <input type="text" class="form-control" name="kodearea"  id="tujuan" value="{{$da->kode_area}}" required>
+            </div>
           <div class="form-group">
               <label for="nama">Asal</label>
               <input type="text" class="form-control" name="asal"  id="tujuan" value="{{$da->asal}}" required>
@@ -115,6 +122,7 @@
                   <thead>
                   <tr>
                     <th>No</th>
+                    <th>Kode Area</th>
                     <th>Daerah Asal</th>
                     <th>Daerah Tujuan</th>
                     <th>Status</th>
@@ -125,6 +133,7 @@
                   @foreach($daftararea as $key=>$da)
                     <tr>
                         <td>{{$key+1}}</td>
+                        <td>{{$da->kode_area}}</td>
                         <td>{{$da->asal}}</td>
                         <td>{{$da->tujuan}}</td>
                         <td>{{$da->status}}</td>

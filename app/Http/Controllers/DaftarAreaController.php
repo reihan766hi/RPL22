@@ -15,6 +15,7 @@ class DaftarAreaController extends Controller
 
     public function tambahArea(Request $request){
         $daftararea = new DaftarArea;
+        $daftararea->kode_area = $request->kodearea;
         $daftararea->asal = $request->asal;
         $daftararea->tujuan = $request->tujuan;
         $daftararea->status = $request->status;
@@ -26,6 +27,7 @@ class DaftarAreaController extends Controller
 
     public function editArea(Request $request,$id){
         $daftararea = DaftarArea::findOrFail($id);
+        $daftararea->kode_area = $request->kodearea;
         $daftararea->asal = $request->asal;
         $daftararea->tujuan = $request->tujuan;
         $daftararea->status = $request->status;
