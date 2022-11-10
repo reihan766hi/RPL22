@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\DaftarBus;
 
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(){
-        return view("pemesan.index");
+        $daftarbus = DaftarBus::latest()->paginate(6);
+        return view('pemesan.index',compact(['daftarbus']));
     }
 
     public function indexAdmin(){

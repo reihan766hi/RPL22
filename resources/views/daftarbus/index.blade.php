@@ -37,6 +37,18 @@
               <label for="nama">Plat Nomor</label>
               <input type="text" class="form-control" name="platnomor"  id="platnomor" placeholder="Plat Nomor" required>
             </div>
+            <div class="form-group">
+            <label for="exampleFormControlSelect1">Kode Area</label>
+             <select class="form-control " id="exampleFormControlSelect1" name="kodearea">
+             @foreach ($daftararea as $key=>$da )
+             <option value="{{$da->kode_area}}"><A><strong>{{$da->kode_area}}|</strong> {{$da->asal}} - {{$da->tujuan}}</A></option>
+             @endforeach              
+             </select>
+           </div>
+           <div class="form-group">
+              <label for="gambarbus">Gambar</label>
+              <input type="file" class="form-control" name="gambarbus"  id="gambarbus"required>
+            </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
               <button type="submit" class="btn btn-primary">Tambah</button>
@@ -82,6 +94,18 @@
             <div class="form-group">
               <label for="nama">Plat Nomor</label>
               <input type="text" class="form-control" name="platnomor"  id="platnomor" value="{{$d->plat_nomor}}" required>
+            </div>
+            <div class="form-group">
+            <label for="exampleFormControlSelect1">Kode Area</label>
+             <select class="form-control " id="exampleFormControlSelect1" name="kodearea">
+             @foreach ($daftararea as $key=>$da )
+             <option value="{{$da->kode_area}}"><A><strong>{{$da->kode_area}}|</strong> {{$da->asal}} - {{$da->tujuan}}</A></option>
+             @endforeach              
+             </select>
+           </div>
+           <div class="form-group">
+              <label for="gambarbus">Gambar</label>
+              <input type="file" class="form-control" name="gambarbus"  id="gambarbus"required>
             </div>
 
             <div class="modal-footer justify-content-between">
@@ -130,6 +154,7 @@
                     <th>Pabrikan</th>
                     <th>No.Mesin</th>
                     <th>Plat Nomor</th>
+                    <th>Kode Area</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
@@ -142,6 +167,7 @@
                         <td>{{$d->pabrikan}}</td>
                         <td>{{$d->no_mesin}}</td>
                         <td>{{$d->plat_nomor}}</td>
+                        <td>{{$d->kode_area}}</td>
                         <td>
                         <button type="button" class="btn  btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit{{$d->id}}">Edit</button> &nbsp
                            <a href="#" class="btn btn-danger btn-sm delete-bus" akun-id="{{$d->id}}" akun-name="{{$d->kode_bus}}">Hapus</a>

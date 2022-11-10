@@ -20,6 +20,8 @@ class DaftarBus extends Migration
             $table->string("pabrikan");
             $table->string("no_mesin");
             $table->string("plat_nomor");
+            $table->string("kode_area");
+            $table->string("gambar_bus");
             $table->timestamps();
         });
     }
