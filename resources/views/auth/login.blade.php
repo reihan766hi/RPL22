@@ -87,7 +87,7 @@
 
       <div class="social-auth-links text-center mb-3">
           <p class="mb-0">
-            <!-- <a href="/register" class="text-center">Register</a> -->
+            <a href="/register" class="text-center">belum punya akun ? daftar !</a>
           </p>
       </div>
     </div>
