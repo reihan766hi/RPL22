@@ -83,7 +83,16 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
         $auth = Auth::attempt($credentials);
         if($auth){
-            return redirect('/')->with('success','Berhasil Login');
+
+            $role = Auth::user()->role;
+
+            if($role == 'admin' || $role == 'pemesan'){
+                return redirect('/dashboard')->with('success','Berhasil Login');
+            }else{
+                return redirect('/')->with('success','Berhasil Login');
+            }
+
+
         }else{
             return back()->with('error','Username atau Password tidak sesuai');
         }

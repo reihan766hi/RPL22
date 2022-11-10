@@ -13,7 +13,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -27,42 +27,6 @@
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>shutlebusjogja@gmail.com</p>
-                        <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-primary pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
@@ -89,7 +53,11 @@
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             </div>
                         </div>
-                        <a href="/login" class="nav-item nav-link">Login</a>
+                        @if(!Auth::check())
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                        @else
+                        <a href="/logout" class="nav-item nav-link">Logout</a>
+                        @endif
                     </div>
                 </div>
             </nav>
@@ -103,7 +71,7 @@
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="user/img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="https://source.unsplash.com/T5jzpRTVF1U" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
@@ -139,7 +107,7 @@
 
 
     <!-- Booking Start -->
-    <div class="container-fluid booking mt-5 pb-5">
+    {{-- <div class="container-fluid booking mt-5 pb-5">
         <div class="container pb-5">
             <div class="bg-light shadow" style="padding: 30px;">
                 <div class="row align-items-center" style="min-height: 60px;">
@@ -190,7 +158,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Booking End -->
 
     <!-- Packages Start -->
@@ -201,6 +169,7 @@
                 <h1>Choose your bus!</h1>
             </div>
             <div class="row">
+<<<<<<< HEAD
                 @foreach ($daftararea as $key=>$d )
                 
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -211,8 +180,18 @@
                                 <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->asal}}</small>
                                 <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>1 days</small>
                                 <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 Person</small>
+=======
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="user/img/package-1.jpg" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small>
+                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 Person</small>
+>>>>>>> f22f8d39a1e3b7f57a1b92dc74dc23456a98356c
                             </div>
-                            <a class="h6 text-decoration-none" href="">{{$d->kode_area}}| {{$d->asal}}-{{$d->tujuan}}</a>
+                            <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
                                     <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
@@ -222,63 +201,105 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
-            
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="user/img/package-2.jpg" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small>
+                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 Person</small>
+                            </div>
+                            <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h5 class="m-0">$350</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="user/img/package-3.jpg" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small>
+                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 Person</small>
+                            </div>
+                            <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h5 class="m-0">$350</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="user/img/package-4.jpg" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small>
+                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 Person</small>
+                            </div>
+                            <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h5 class="m-0">$350</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="user/img/package-5.jpg" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small>
+                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 Person</small>
+                            </div>
+                            <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h5 class="m-0">$350</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="user/img/package-6.jpg" alt="">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small>
+                                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>2 Person</small>
+                            </div>
+                            <a class="h5 text-decoration-none" href="">Discover amazing places of the world with us</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
+                                    <h5 class="m-0">$350</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- Packages End -->
-
-    <!-- Registration Start -->
-    <div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                    <div class="mb-4">
-                        <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Mega Offer</h6>
-                        <h1 class="text-white"><span class="text-primary">30% OFF</span> For Honeymoon</h1>
-                    </div>
-                    <p class="text-white">Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
-                        ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
-                        dolor</p>
-                    <ul class="list-inline text-white m-0">
-                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Labore eos amet dolor amet diam</li>
-                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Etsea et sit dolor amet ipsum</li>
-                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Diam dolor diam elitripsum vero.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-5">
-                    <div class="card border-0">
-                        <div class="card-header bg-primary text-center p-4">
-                            <h1 class="text-white m-0">Form Pemesanan</h1>
-                        </div>
-                        <div class="card-body rounded-bottom bg-white p-5">
-                            <form>
-                                <div class="form-group">
-                                    <input type="text" class="form-control p-4" placeholder="Nama Lemgkap" required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control p-4" placeholder="Email" required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control p-4" placeholder="No.Telp" required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Jogja - Surabaya</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary btn-block py-3" type="submit">Pesan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Registration End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
@@ -296,45 +317,7 @@
                     <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Our Services</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
-                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Usefull Links</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
-                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contact Us</h5>
-                <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope mr-2"></i>shutlebusjogja@gmail.com</p>
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Newsletter</h6>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-3">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">

@@ -13,4 +13,8 @@ class HomeController extends Controller
         $daftararea = DaftarArea::get();
         return view('pemesan.index',compact(['daftarbus','daftararea']));
     }
+
+    public function indexAdmin(){
+        return view("dashboard.index");
+    }
 }
