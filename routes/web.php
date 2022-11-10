@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::get('/',[HomeController::class, 'index'])->middleware('auth');
 Route::get('/',[HomeController::class, 'index']);
 Route::get('/register',[AuthController::class ,'register']);
 Route::get('/login',[AuthController::class ,'login'])->name('login');
@@ -29,6 +28,7 @@ Route::get('/logout',[AuthController::class, 'logout']);
 
 
 Route::middleware(['auth','role:admin'])->group(function(){
+    Route::get('/dashboard',[HomeController::class, 'indexAdmin']);
     Route::get('/daftarpengguna',[DaftarPenggunaController::class, 'index']);
     Route::get('/daftarbus',[DaftarBusController::class, 'index']);
     Route::get('/daftararea',[DaftarAreaController::class, 'index']);
