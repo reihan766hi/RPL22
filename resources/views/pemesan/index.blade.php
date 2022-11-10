@@ -201,14 +201,15 @@
                 <h1>Choose your bus!</h1>
             </div>
             <div class="row">
-                @foreach ($daftarbus as $key=>$d )
+                @foreach ($daftararea as $key=>$d )
+                
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="package-item bg-white mb-2">
-                        <img class="img-fluid" src="{{asset('gambar_bus/'.$d->gambar_bus)}}" alt="">
+                        <img class="img-fluid" src="{{asset('gambar_bus/4a2edf9e-1243-4c94-9e11-9c7437849f19.jpg.webp-1668074364.webp')}}" alt="">
                         <div class="p-4">
                             <div class="d-flex justify-content-between mb-3">
                                 <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->asal}}</small>
-                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>1 days</small>
                                 <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 Person</small>
                             </div>
                             <a class="h6 text-decoration-none" href="">{{$d->kode_area}}| {{$d->asal}}-{{$d->tujuan}}</a>

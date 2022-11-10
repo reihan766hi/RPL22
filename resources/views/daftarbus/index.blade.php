@@ -41,7 +41,7 @@
             <label for="exampleFormControlSelect1">Kode Area</label>
              <select class="form-control " id="exampleFormControlSelect1" name="kodearea">
              @foreach ($daftararea as $key=>$da )
-             <option value="{{$da->kode_area}}"><A><strong>{{$da->kode_area}}|</strong> {{$da->asal}} - {{$da->tujuan}}</A></option>
+             <option value="{{$da->id}}"><A><strong>{{$da->kode_area}}|</strong> {{$da->asal}} - {{$da->tujuan}}</A></option>
              @endforeach              
              </select>
            </div>
