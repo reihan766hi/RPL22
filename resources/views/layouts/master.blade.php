@@ -150,6 +150,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/daftarsifat" class="nav-link">
+              <i class="nav-icon fa fa-tags"></i>
+              <p>
+               Sifat
+              </p>
+            </a>
+          </li>
           @endif
           {{-- <li class="nav-item">
             <a href="#" class="nav-link">

@@ -5,6 +5,7 @@ use App\Http\Controllers\DaftarPenggunaController;
 use App\Http\Controllers\DaftarBusController;
 use App\Http\Controllers\DaftarAreaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SifatPesananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/daftararea/hapusarea/{id}',[DaftarAreaController::class, 'hapusArea']);
     Route::get('/deleteakun/{id}',[AuthController::class, 'deleteakun']);
     Route::post('/daftarpengguna/edit/{id}',[AuthController::class, 'editakun']);
-
+    Route::get('/daftarsifat',[SifatPesananController::class, 'index']);
+    Route::post('/tambahsifat',[SifatPesananController::class, 'tambahSifat']);
+    Route::post('editsifat/{id}',[SifatPesananController::class, 'editSifat']);
+    Route::get('/hapusstatus/{id}',[SifatPesananController::class,'hapusSifat']);
 });
 

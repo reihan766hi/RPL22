@@ -42,7 +42,7 @@
              <select class="form-control " id="exampleFormControlSelect1" name="kodearea">
              @foreach ($daftararea as $key=>$da )
              <option value="{{$da->id}}"><A><strong>{{$da->kode_area}}|</strong> {{$da->asal}} - {{$da->tujuan}}</A></option>
-             @endforeach              
+             @endforeach
              </select>
            </div>
            <div class="form-group">
@@ -100,7 +100,7 @@
              <select class="form-control " id="exampleFormControlSelect1" name="kodearea">
              @foreach ($daftararea as $key=>$da )
              <option value="{{$da->kode_area}}"><A><strong>{{$da->kode_area}}|</strong> {{$da->asal}} - {{$da->tujuan}}</A></option>
-             @endforeach              
+             @endforeach
              </select>
            </div>
            <div class="form-group">
