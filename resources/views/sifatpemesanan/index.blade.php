@@ -7,7 +7,7 @@
       <div class="modal-content">
 
         <div class="modal-header">
-          <h4 class="modal-title">Tambah Daftar Bus</h4>
+          <h4 class="modal-title">Tambah Daftar Sifat</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -81,7 +81,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Daftar Bus</h3>
+                    <h3 class="card-title">Daftar Sifat</h3>
                     <div class="float-right">
                 </div>
             </div>
@@ -125,10 +125,10 @@
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": [ {
-                extend: 'pdf',
-                title: 'Daftar Pengguna'
-            }]
+        // "buttons": [ {
+        //         extend: 'pdf',
+        //         title: 'Daftar Pengguna'
+        //     }]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

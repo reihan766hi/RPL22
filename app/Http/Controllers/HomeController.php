@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index(){
         $daftarbus = DaftarBus::latest()->paginate(6);
         $daftararea = DaftarArea::get();
-        return view('pemesan.index',compact(['daftarbus','daftararea']));
+        return view('pemesan.home.index',compact(['daftarbus','daftararea']));
     }
 
     public function indexAdmin(){
