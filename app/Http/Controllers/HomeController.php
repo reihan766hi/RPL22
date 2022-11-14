@@ -14,13 +14,12 @@ class HomeController extends Controller
         $daftararea = DaftarArea::get();
         $daftararea1 = DaftarArea::get();
 
-
-        if($request->asal && $request->tujuan)
+        if($request->asal != null && $request->tujuan != null)
             $daftararea = DaftarArea::where('asal', 'LIKE',  '%' . $request->asal. '%')->where('tujuan', 'LIKE', '%' . $request->tujuan. '%')->get();
-        else if($request->asal)
+        else if($request->asal != null)
             $daftararea = DaftarArea::where('asal', 'LIKE', '%' . $request->asal. '%')->get();
-        else if($request->tujuan)
-            $daftararea = DaftarArea::where('tujuan', 'LIKE', '%' . $request->asal. '%')->get();
+        else if($request->tujuan != null)
+            $daftararea = DaftarArea::where('tujuan', 'LIKE', '%' . $request->tujuan. '%')->get();
 
         return view('pemesan.home.index',compact(['daftarbus','daftararea','daftararea1']));
     }

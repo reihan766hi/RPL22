@@ -54,7 +54,7 @@
                             <div class="mb-3 mb-md-0">
                                 <select class="custom-select px-4" style="height: 47px;" name="asal">
                                     <option value="">Asal</option>
-                                    @foreach ($daftararea1 as $key=>$d )
+                                    @foreach ($daftararea1->unique('asal') as $key=>$d )
                                         <option value={{$d->asal}}>{{$d->asal}}</option>
                                     @endforeach
                                 </select>
@@ -64,7 +64,7 @@
                             <div class="mb-3 mb-md-0">
                                 <select class="custom-select px-4" style="height: 47px;" name="tujuan">
                                     <option value="">Tujuan</option>
-                                    @foreach ($daftararea1 as $key=>$d )
+                                    @foreach ($daftararea1->unique('tujuan') as $key=>$d )
                                         <option value={{$d->tujuan}}>{{$d->tujuan}}</option>
                                     @endforeach
                                 </select>
@@ -92,10 +92,12 @@
             <h1>Choose your bus!</h1>
         </div>
         <div class="row">
-            @foreach ($daftararea as $key=>$d )
+            @foreach ($daftararea as $d)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="/gambar_bus/{{$d->bus[$key]->gambar_bus}}" alt="">
+                    @foreach ($d->bus as $bus)
+                        <img class="img-fluid" src="/gambar_bus/{{$bus->gambar_bus}}" alt="img" style="height: 200px; width:350px">
+                    @endforeach
                     <div class="p-4">
                         <div class="d-flex justify-content-between mb-3">
                             <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->asal}}</small>
@@ -103,7 +105,7 @@
                             <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 Person</small>
 
                         </div>
-                        <a class="h5 text-decoration-none" href=""><sb>{{$d->kode_area}}</b>| {{$d->asal}} - {{$d->tujuan}}</a>
+                        <a class="h5 text-decoration-none" href=""><b>{{$d->kode_area}}</b>| {{$d->asal}} - {{$d->tujuan}}</a>
                         <div class="border-top mt-4 pt-4">
                             <div class="d-flex justify-content-between">
                                 <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
