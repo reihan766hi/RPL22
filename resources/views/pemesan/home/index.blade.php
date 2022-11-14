@@ -40,58 +40,48 @@
 <!-- Carousel End -->
 
 <!-- Booking Start -->
+
 <div class="container-fluid booking mt-5 pb-5">
+
     <div class="container pb-5">
+        <form method="post" action="/searchresult">
+            @csrf
         <div class="bg-light shadow" style="padding: 30px;">
             <div class="row align-items-center" style="min-height: 60px;">
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="mb-3 mb-md-0">
-                                <select class="custom-select px-4" style="height: 47px;">
-                                    <option selected>Asal</option>
-                                    <option value="1">Destination 1</option>
-                                    <option value="2">Destination 1</option>
-                                    <option value="3">Destination 1</option>
+                                <select class="custom-select px-4" style="height: 47px;" name="asal">
+                                    <option value="">Asal</option>
+                                    @foreach ($daftararea1 as $key=>$d )
+                                        <option value={{$d->asal}}>{{$d->asal}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mb-3 mb-md-0">
-                                <select class="custom-select px-4" style="height: 47px;">
-                                    <option selected>Tujuan</option>
-                                    <option value="1">Duration 1</option>
-                                    <option value="2">Duration 1</option>
-                                    <option value="3">Duration 1</option>
+                                <select class="custom-select px-4" style="height: 47px;" name="tujuan">
+                                    <option value="">Tujuan</option>
+                                    @foreach ($daftararea1 as $key=>$d )
+                                        <option value={{$d->tujuan}}>{{$d->tujuan}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="col-md-3">
-                            <div class="mb-3 mb-md-0">
-                                <div class="date" id="date1" data-target-input="nearest">
-                                    <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Tanggal" data-target="#date1" data-toggle="datetimepicker"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3 mb-md-0">
-                                <select class="custom-select px-4" style="height: 47px;">
-                                    <option selected>Jenis Bus (All)</option>
-                                    <option value="1">Duration 1</option>
-                                    <option value="2">Duration 1</option>
-                                    <option value="3">Duration 1</option>
-                                </select>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-md-2">
                     <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Cari</button>
                 </div>
+
             </div>
         </div>
+    </form>
     </div>
 </div>
+
 <!-- Booking End -->
 
 <!-- Packages Start -->
@@ -103,10 +93,9 @@
         </div>
         <div class="row">
             @foreach ($daftararea as $key=>$d )
-
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="package-item bg-white mb-2">
-                    <img class="img-fluid" src="{{asset('gambar_bus/4a2edf9e-1243-4c94-9e11-9c7437849f19.jpg.webp-1668074364.webp')}}" alt="">
+                    <img class="img-fluid" src="/gambar_bus/{{$d->bus[$key]->gambar_bus}}" alt="">
                     <div class="p-4">
                         <div class="d-flex justify-content-between mb-3">
                             <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->asal}}</small>
