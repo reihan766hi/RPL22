@@ -86,7 +86,7 @@ class AuthController extends Controller
 
             $role = Auth::user()->role;
 
-            if($role == 'admin' || $role == 'pemesan'){
+            if($role == 'admin' || $role == 'manajer'){
                 return redirect('/dashboard')->with('success','Berhasil Login');
             }else{
                 return redirect('/')->with('success','Berhasil Login');
