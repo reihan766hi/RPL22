@@ -167,7 +167,7 @@
                         <td>{{$d->pabrikan}}</td>
                         <td>{{$d->no_mesin}}</td>
                         <td>{{$d->plat_nomor}}</td>
-                        <td>{{$d->kode_area}}</td>
+                        <td>{{$d->area->kode_area}}</td>
                         <td>
                         <button type="button" class="btn  btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit{{$d->id}}">Edit</button> &nbsp
                            <a href="#" class="btn btn-danger btn-sm delete-bus" akun-id="{{$d->id}}" akun-name="{{$d->kode_bus}}">Hapus</a>

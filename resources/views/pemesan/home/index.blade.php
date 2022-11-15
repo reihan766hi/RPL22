@@ -93,19 +93,19 @@
         </div>
         <div class="row">
             @foreach ($daftararea as $d)
+            @foreach ($d->bus as $bus)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="package-item bg-white mb-2">
-                    @foreach ($d->bus as $bus)
                         <img class="img-fluid" src="/gambar_bus/{{$bus->gambar_bus}}" alt="img" style="height: 200px; width:350px">
-                    @endforeach
                     <div class="p-4">
                         <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->asal}}</small>
+                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->asal}}</small><br>
                             <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>1 days</small>
                             <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 Person</small>
 
                         </div>
-                        <a class="h5 text-decoration-none" href=""><b>{{$d->kode_area}}</b>| {{$d->asal}} - {{$d->tujuan}}</a>
+                        <a class="h5 text-decoration-none" href=""><b>{{$bus->jenis}}</b> ({{$bus->kode_bus}})</a><br>
+                        <a class="h6 text-decoration-none" href="">{{$d->kode_area}} | {{$d->asal}} - {{$d->tujuan}}</a>
                         <div class="border-top mt-4 pt-4">
                             <div class="d-flex justify-content-between">
                                 <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
@@ -115,6 +115,7 @@
                     </div>
                 </div>
             </div>
+            @endforeach
             @endforeach
         </div>
     </div>
