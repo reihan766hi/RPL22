@@ -41,7 +41,7 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="/" class="nav-item nav-link active">Home</a>
 
-                        <a href="package.html" class="nav-item nav-link">Tour Packages</a>
+                        <a href="/history" class="nav-item nav-link">History</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">

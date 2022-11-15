@@ -11,4 +11,8 @@ class DaftarBus extends Model
     public function area(){
         return $this->belongsTo(DaftarArea::class,'kode_area');
     }
+
+    public function produk(){
+        return $this->hasMany(Produk::class,'kode_bus');
+    }
 }

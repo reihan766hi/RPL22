@@ -92,24 +92,24 @@
             <h1>Choose your bus!</h1>
         </div>
         <div class="row">
-            @foreach ($daftararea as $d)
-            @foreach ($d->bus as $bus)
+            @foreach($daftarbus as $key=>$d)
+            @foreach($d->produk as $prd)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="package-item bg-white mb-2">
-                        <img class="img-fluid" src="/gambar_bus/{{$bus->gambar_bus}}" alt="img" style="height: 200px; width:350px">
+                        <img class="img-fluid" src="/gambar_bus/{{$d->gambar_bus}}" alt="img" style="height: 200px; width:350px">
                     <div class="p-4">
                         <div class="d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->asal}}</small><br>
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>1 days</small>
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 Person</small>
+                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->area->asal}}</small><br>
+                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{$prd->jadwal}}</small>
+                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>{{$prd->sifat_pemesanan}}</small>
 
                         </div>
-                        <a class="h5 text-decoration-none" href=""><b>{{$bus->jenis}}</b> ({{$bus->kode_bus}})</a><br>
-                        <a class="h6 text-decoration-none" href="">{{$d->kode_area}} | {{$d->asal}} - {{$d->tujuan}}</a>
+                        <a class="h5 text-decoration-none" href=""><b>{{$d->jenis}}</b> ({{$d->kode_bus}})</a><br>
+                        <a class="h6 text-decoration-none" href="">{{$d->area->kode_area}} | {{$d->area->asal}} - {{$d->area->tujuan}}</a>
                         <div class="border-top mt-4 pt-4">
                             <div class="d-flex justify-content-between">
-                                <h5 class="m-10" style="margin-top: 10px;">Rp.120.000</h5>
-                                <h6><a href="/formpemesanan" class="btn btn-primary py-md-2 px-md-3 mt-1">Pesan</a></h6>
+                                <h5 class="m-10" style="margin-top: 10px;">Rp.{{$prd->harga}}</h5>
+                                <h6><a href="/formpemesanan/{{$prd->id}}/checkout" class="btn btn-primary py-md-2 px-md-3 mt-1">Pesan</a></h6>
                             </div>
                         </div>
                     </div>

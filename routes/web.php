@@ -6,6 +6,7 @@ use App\Http\Controllers\DaftarBusController;
 use App\Http\Controllers\DaftarAreaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SifatPesananController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class, 'index']);
-Route::get('/formpemesanan',[HomeController::class, 'formpemesanan']);
+Route::get('/formpemesanan/{id}/checkout',[HomeController::class, 'formpemesanan']);
+Route::post('/formpemesanan/checkout/{id}',[HomeController::class, 'checkout']);
+Route::post('/formpemesanan/checkout/pesan',[HomeController::class, 'pesan']);
+Route::get('/history',[HomeController::class, 'indexHistory']);
 Route::post('/searchresult',[HomeController::class, 'index']);
 Route::get('/register',[AuthController::class ,'register']);
 Route::get('/login',[AuthController::class ,'login'])->name('login');
@@ -47,5 +51,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/tambahsifat',[SifatPesananController::class, 'tambahSifat']);
     Route::post('editsifat/{id}',[SifatPesananController::class, 'editSifat']);
     Route::get('/hapusstatus/{id}',[SifatPesananController::class,'hapusSifat']);
+    Route::get('/daftarproduk',[ProdukController::class, 'index']);
+    Route::post('/daftarproduk/tambahproduk',[ProdukController::class, 'tambahproduk']);
+    Route::get('/daftarproduk/hapusproduk/{id}',[ProdukController::class, 'hapusproduk']);
+    Route::post('/daftarproduk/editproduk/{id}',[ProdukController::class, 'editproduk']);
 });
 

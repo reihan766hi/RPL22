@@ -135,6 +135,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/daftarproduk" class="nav-link">
+              <i class="nav-icon fa fa-list"></i>
+              <p>
+               Produk
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/daftarbus" class="nav-link">
               <i class="nav-icon fa fa-bus"></i>
               <p>
