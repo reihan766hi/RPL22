@@ -27,4 +27,9 @@ class HomeController extends Controller
     public function indexAdmin(){
         return view("dashboard.index");
     }
+
+    public function formpemesanan(){
+        $daftararea1 = DaftarArea::get();
+        return view("pemesan.home.formpemesanan",compact(['daftararea1']));
+    }
 }

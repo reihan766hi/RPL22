@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class, 'index']);
+Route::get('/formpemesanan',[HomeController::class, 'formpemesanan']);
 Route::post('/searchresult',[HomeController::class, 'index']);
 Route::get('/register',[AuthController::class ,'register']);
 Route::get('/login',[AuthController::class ,'login'])->name('login');
