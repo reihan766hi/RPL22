@@ -72,9 +72,9 @@
           <div class="form-group">
             <label for="exampleFormControlSelect1">Role</label>
              <select class="form-control " id="exampleFormControlSelect1" name="role">
-               <option value="pemesan"><A>Pemesan</A></option>
-               <option value="manager"><A>Manager</A></option>
-               <option value="admin"><A>Admin</A></option>
+               <option value="Pemesan"><A>Pemesan</A></option>
+               <option value="Manager"><A>Manager</A></option>
+               <option value="Admin"><A>Admin</A></option>
              </select>
            </div>
 
@@ -141,10 +141,11 @@
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Role</label>
-             <select class="form-control " id="exampleFormControlSelect1" name="role" value= "{{$d->role}}">
-               <option value="pemesan"><A>Pemesan</A></option>
-               <option value="manager"><A>Manager</A></option>
-               <option value="admin"><A>Admin</A></option>
+             <select class="form-control " id="exampleFormControlSelect1" name="role">
+                <option value="{{$d->role}}">{{$d->role}}</option>
+               <option value="Pemesan"><A>Pemesan</A></option>
+               <option value="Manager"><A>Manager</A></option>
+               <option value="Admin"><A>Admin</A></option>
              </select>
            </div>
 
@@ -203,7 +204,7 @@
                     </thead>
                     <tbody>
                     @foreach ($user as $key=>$us)
-                      @if($us->role == "pemesan")
+
                         <tr>
                             <td>{{$key + 1}}</td>
                             <td>{{$us->name}}</td>
@@ -218,7 +219,7 @@
                                 <a href="#" class="btn btn-danger btn-sm delete-user" data-id="{{$us->id}}" data-name="{{$us->name}}">Hapus</a>
                             </td>
                         </tr>
-                      @endif
+
                     @endforeach
                     </tfoot>
                   </table>

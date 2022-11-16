@@ -5,7 +5,6 @@
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-
         <div class="modal-header">
           <h4 class="modal-title">Tambah Daftar Produk</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -28,8 +27,9 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Sifat Pemesanan</label>
                 <select class="form-control " id="exampleFormControlSelect1" name="sifatpemesanan">
-                <option value="Pribadi">Pribadi</option>
-                <option value="Instansi">Instansi</option>
+                    @foreach ($sifat as $key=>$d )
+                    <option value="{{$d->status}}">{{$d->status}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">
@@ -78,11 +78,12 @@
              <label for="exampleFormControlSelect1">Sifat Pemesanan</label>
               <select class="form-control " id="exampleFormControlSelect1" name="sifatpemesanan">
                 <option value="{{$da->sifat_pemesanan}}">{{$da->sifat_pemesanan}}</option>
-                <option value="Pribadi">Pribadi</option>
-                <option value="Instansi">Instansi</option>
+                @foreach ($sifat as $key=>$d )
+                    <option value="{{$d->status}}">{{$d->status}}</option>
+                @endforeach
               </select>
             </div>
-          
+
             <div class="form-group">
               <label for="nama">Harga</label>
               <input type="text" class="form-control" name="harga"  id="jenisbus" value="{{$da->harga}}" required>
@@ -138,7 +139,7 @@
                     <th>Kode Area</th>
                     <th>Asal</th>
                     <th>Tujuan</th>
-                    <th>Harga </th>                   
+                    <th>Harga </th>
                     <th>Sifat</th>
                     <th>Jadwal</th>
                     <th>Gambar</th>

@@ -70,8 +70,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="mb-3 mb-md-0">
+                                <select class="custom-select px-4" style="height: 47px;" name="sifat">
+                                    <option value="">Jenis</option>
+                                    @foreach ($daftarsifat->unique('status') as $key=>$d )
+                                        <option value={{$d->status}}>{{$d->status}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                    <input type="hidden" name='search'>
                 <div class="col-md-2">
                     <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Cari</button>
                 </div>
@@ -92,7 +103,7 @@
             <h1>Choose your bus!</h1>
         </div>
         <div class="row">
-            @foreach($daftarbus as $key=>$d)
+            @foreach ($daftarbus as $d)
             @foreach($d->produk as $prd)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="package-item bg-white mb-2">
@@ -102,7 +113,6 @@
                             <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$d->area->asal}}</small><br>
                             <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{$prd->jadwal}}</small>
                             <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>{{$prd->sifat_pemesanan}}</small>
-
                         </div>
                         <a class="h5 text-decoration-none" href=""><b>{{$d->jenis}}</b> ({{$d->kode_bus}})</a><br>
                         <a class="h6 text-decoration-none" href="">{{$d->area->kode_area}} | {{$d->area->asal}} - {{$d->area->tujuan}}</a>
@@ -120,7 +130,6 @@
         </div>
     </div>
 </div>
-<!-- Packages End -->
-
-
+</div>
 @endsection
+

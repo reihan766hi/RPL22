@@ -7,6 +7,8 @@ use App\Models\DaftarBus;
 use App\Models\Order;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\SifatPemesanan;
 
 class HomeController extends Controller
 {
@@ -14,16 +16,45 @@ class HomeController extends Controller
 
         $daftarproduk = Produk::latest()->paginate(6);
         $daftararea1 = DaftarArea::get();
-        $daftarbus = DaftarBus::get();
+        $daftarbus = DaftarBus::with('produk')->get();
+        $daftarsifat = SifatPemesanan::get();
 
-        if($request->asal != null && $request->tujuan != null)
-            $daftararea = DaftarArea::where('asal', 'LIKE',  '%' . $request->asal. '%')->where('tujuan', 'LIKE', '%' . $request->tujuan. '%')->get();
-        else if($request->asal != null)
-            $daftararea = DaftarArea::where('asal', 'LIKE', '%' . $request->asal. '%')->get();
-        else if($request->tujuan != null)
-            $daftararea = DaftarArea::where('tujuan', 'LIKE', '%' . $request->tujuan. '%')->get();
+        if($request->has('search')){
+            $daftarbus = DaftarBus::join('daftar_areas','daftar_areas.id', '=', 'daftar_buses.kode_area')
+                ->join('produks','produks.kode_bus', '=', 'daftar_buses.id')
+                ->where(function($q) use ($request){
+                    if($request->asal != null && $request->tujuan != null && $request->sifat != null ){
+                        $q->where('asal', $request->get('asal'))->where('tujuan', $request->get('tujuan'))->where('sifat_pemesanan', $request->get('sifat'));
+                    }
+                    else if($request->asal != null && $request->tujuan != null){
 
-        return view('pemesan.home.index',compact(['daftarproduk','daftararea1','daftarbus']));
+                        $q->where('asal', $request->get('asal'))->where('tujuan', $request->get('tujuan'));
+                    }
+                    else if($request->asal != null && $request->sifat != null){
+
+                        $q->where('asal', $request->get('asal'))->where('sifat_pemesanan', $request->get('sifat'));
+                    }
+                    else if($request->tujuan != null && $request->sifat != null){
+
+                        $q->where('tujuan', $request->get('tujuan'))->where('sifat_pemesanan', $request->get('sifat'));
+                    }
+                    else if($request->sifat != null){
+
+                        $q->where('sifat_pemesanan', $request->get('sifat'));
+                    }
+                    else if($request->asal != null){
+
+                        $q->where('asal', $request->get('asal'));
+                    }
+                    else if($request->tujuan != null){
+
+                        $q->where('tujuan', $request->get('tujuan'));
+                    }
+                })
+                ->get(['produks.*','daftar_areas.*','daftar_buses.*']);
+
+        }
+        return view('pemesan.home.index',compact(['daftarproduk','daftararea1','daftarbus','daftarsifat']));
     }
 
     public function indexAdmin(){
@@ -41,7 +72,7 @@ class HomeController extends Controller
         return view("pemesan.home.formpemesanan",compact(['produk']));
     }
 
-    public function pesan(){
+    public function pesan(Request $request){
         $order = new Order;
         $order->nama = $request->jenisbus;
         $order->email = $request->kodebus;

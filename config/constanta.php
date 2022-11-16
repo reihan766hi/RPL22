@@ -2,7 +2,7 @@
 namespace App;
 class constanta{
 
-    const admin = 'admin';
+    const admin = 'Admin';
 
 }
 

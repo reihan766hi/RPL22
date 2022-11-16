@@ -86,7 +86,7 @@ class AuthController extends Controller
 
             $role = Auth::user()->role;
 
-            if($role == 'admin' || $role == 'manajer'){
+            if($role == 'Admin' || $role == 'Manager'){
                 return redirect('/dashboard')->with('success','Berhasil Login');
             }else{
                 return redirect('/')->with('success','Berhasil Login');
@@ -105,7 +105,7 @@ class AuthController extends Controller
 
         Auth::logout();
 
-        return redirect('/');
+        return redirect('/login');
     }
 
 

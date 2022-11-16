@@ -22,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class, 'index']);
-Route::get('/formpemesanan/{id}/checkout',[HomeController::class, 'formpemesanan']);
-Route::post('/formpemesanan/checkout/{id}',[HomeController::class, 'checkout']);
-Route::post('/formpemesanan/checkout/pesan',[HomeController::class, 'pesan']);
-Route::get('/history',[HomeController::class, 'indexHistory']);
 Route::post('/searchresult',[HomeController::class, 'index']);
 Route::get('/register',[AuthController::class ,'register']);
 Route::get('/login',[AuthController::class ,'login'])->name('login');
@@ -34,7 +30,7 @@ Route::post('/postlogin',[AuthController::class, 'postlogin']);
 Route::get('/logout',[AuthController::class, 'logout']);
 
 
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth','role:Admin'])->group(function(){
     Route::get('/dashboard',[HomeController::class, 'indexAdmin']);
     Route::get('/daftarpengguna',[DaftarPenggunaController::class, 'index']);
     Route::get('/daftarbus',[DaftarBusController::class, 'index']);
@@ -57,3 +53,9 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/daftarproduk/editproduk/{id}',[ProdukController::class, 'editproduk']);
 });
 
+Route::middleware(['auth','role:Pemesan'])->group(function(){
+    Route::get('/formpemesanan/{id}/checkout',[HomeController::class, 'formpemesanan']);
+    Route::post('/formpemesanan/checkout/{id}',[HomeController::class, 'checkout']);
+    Route::post('/formpemesanan/checkout/pesan',[HomeController::class, 'pesan']);
+    Route::get('/history',[HomeController::class, 'indexHistory']);
+});
