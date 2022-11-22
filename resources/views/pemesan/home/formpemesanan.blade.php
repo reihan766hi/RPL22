@@ -85,35 +85,37 @@
                                     <h1 class="text-white m-0">FORM PEMESANAN</h1>
                                 </div>
                                 <div class="card-body rounded-bottom bg-white p-5">
-                                    <form method="post" action="/formpemesanan/checkout/pesan">
+                                @foreach($produk as $p)
+                                    <form method="post" action="/formpemesanan/{{$p->id}}/checkout/pesan">
                                         @csrf
-                                        @foreach($produk as $p)
+                                        
                                         <div class="form-group">
-                                            <input type="text" class="form-control p-4" value="{{auth()->user()->name}}" required="required" />
+                                            <input type="text" class="form-control p-4" name="nama" value="{{auth()->user()->name}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control p-4" value="{{auth()->user()->email}}" required="required" />
+                                            <input type="email" class="form-control p-4" name="email" value="{{auth()->user()->email}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control p-4" value="{{auth()->user()->no_hp}}" required="required" />
+                                            <input type="text" class="form-control p-4" name="notelp" value="{{auth()->user()->no_hp}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control p-4" value="{{$p->produkbus->kode_bus}}" required="required" />
+                                            <input type="text" class="form-control p-4" name="kodebus" value="{{$p->produkbus->kode_bus}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control p-4" value="Rp.{{$p->harga}}" required="required" />
+                                            <input type="text" class="form-control p-4" name="harga" value="Rp.{{$p->harga}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control p-4" value="{{$p->sifat_pemesanan}}" required="required" />
+                                            <input type="text" class="form-control p-4" name="sifatpemesanan" value="{{$p->sifat_pemesanan}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="date" class="form-control p-4" value="{{$p->jadwal}}" required="required" />
+                                            <input type="date" class="form-control p-4" name="jadwal" value="{{$p->jadwal}}" required="required" />
                                         </div>
-                                        @endforeach
+                                        
                                         <div>
                                             <button class="btn btn-primary btn-block py-3" type="submit">Pembayaran</button>
                                         </div>
                                     </form>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

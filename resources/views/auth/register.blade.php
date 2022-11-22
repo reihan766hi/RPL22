@@ -130,7 +130,7 @@
 
           <div class="input-group mb-3">
             <input type="number" class="form-control {{$errors->has('no_hp') ? ' is-invalid' : ''}}" name="no_hp" placeholder="No HP">
-            <input type="hidden" class="form-control" name="role" value="pemesan">
+            <input type="hidden" class="form-control" name="role" value="Pemesan">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-phone"></span>

@@ -62,7 +62,9 @@ class HomeController extends Controller
     }
 
     public function indexHistory(){
-        return view("pemesan.home.history");
+        $order = Order::where('nama','=',auth()->user()->name)->latest()->paginate(1);
+        $daftarbus = DaftarBus::get();
+        return view("pemesan.home.history",compact(['order','daftarbus']));
     }
 
     public function formpemesanan($id){
@@ -74,15 +76,15 @@ class HomeController extends Controller
 
     public function pesan(Request $request){
         $order = new Order;
-        $order->nama = $request->jenisbus;
-        $order->email = $request->kodebus;
-        $order->notelp = $request->pabrikan;
-        $order->kode_bus = $request->nomesin;
+        $order->nama = $request->nama;
+        $order->email = $request->email;
+        $order->notelp = $request->notelp;
+        $order->kode_bus = $request->kodebus;
         $order->harga = $request->harga;
-        $order->sifat_pemesanan = $request->sifat_pemesanan;
+        $order->sifat_pemesanan = $request->sifatpemesanan;
         $order->jadwal = $request->jadwal;
         $order->bukti_pembayaran = $request->buktipembayaran;
-        $order->status = $request->status;
+        $order->status = "menunggu pembayaran";
         $order->save();
 
         Alert::success('Sukses', 'Pesenan Diproses');

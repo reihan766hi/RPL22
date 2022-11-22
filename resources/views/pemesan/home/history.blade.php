@@ -10,34 +10,33 @@
                                     <h1 class="text-white m-0">Status Pemesanan</h1>
                                 </div>
                                 <div class="card-body rounded-bottom bg-white p-5">
+                                    <i>*upload bukti pembayaran untuk mendapatkan tiket</i>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Asal - Tujuan</th>
+                                        <th scope="col">Jadwal</th>
+                                        <th scope="col">Bus</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        </tr>
+                                        @foreach($order as $key=>$o)
+                                        @foreach($daftarbus as $d)
+                                        @if($o->kode_bus == $d->kode_bus)
+                                            <tr>
+                                            <th scope="row">{{$key+1}}</th>
+                                            <td>{{$d->area->asal}} - {{$d->area->tujuan}}</td>
+                                            <td>{{$o->jadwal}}</td>
+                                            <td>{{$o->kode_bus}}</td>
+                                            <td><i>{{$o->status}}</i></td>
+                               
+                                            </tr>
+                                        
+                                        @endif
+                                        @endforeach
+                                        @endforeach
                                     </tbody>
                                     </table>
                                 </div>

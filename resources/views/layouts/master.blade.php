@@ -127,14 +127,6 @@
                with font-awesome or any other icon font library -->
       @if (auth()->user()->role == constanta::admin)
           <li class="nav-item">
-            <a href="/daftarpengguna" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-               Daftar Pengguna
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="/daftarproduk" class="nav-link">
               <i class="nav-icon fa fa-list"></i>
               <p>
@@ -163,6 +155,15 @@
               <i class="nav-icon fa fa-tags"></i>
               <p>
                Sifat
+              </p>
+            </a>
+          </li>
+          @elseif(auth()->user()->role == constanta::manager)
+          <li class="nav-item">
+            <a href="/daftarpengguna" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+               Daftar Pengguna
               </p>
             </a>
           </li>
