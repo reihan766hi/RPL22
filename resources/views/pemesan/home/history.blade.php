@@ -32,13 +32,13 @@
                                             <td>{{$o->orderproduk->produkbus->kode_bus}} - {{$o->orderproduk->produkbus->jenis}}</td>
                                             <td><i>{{$o->status}}</i></td>
                                             <td>
-                                               <a href="http://127.0.0.0:8000/bukti_pembayaran/{{$o->bukti_pembayaran}}" target="__blank"><img class="img-fluid" src="/bukti_pembayaran/{{$o->bukti_pembayaran}}" alt="img" style="height: 100px; width:100px"></a>
+                                               <a href="{{url('') }}/bukti_pembayaran/{{$o->bukti_pembayaran}}" target="__blank"><img class="img-fluid" src="/bukti_pembayaran/{{$o->bukti_pembayaran}}" alt="img" style="height: 100px; width:100px"></a>
                                                 </td>
                                             <td>
                                             @if($o->status == "menunggu pembayaran")
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$o->id}}">Upload</button></td>
                                             @elseif($o->status == "selesai")
-                                            <button class="btn btn-primary">Tiket  <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></button>
+                                            <a href="/invoice/{{$o->id}}" class="btn btn-primary">Tiket  <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
                                             @endif
                                         </tr>
                                         @endforeach

@@ -118,7 +118,7 @@ class HomeController extends Controller
         $data->update();
 
         Alert::success('Sukses', 'Konfirmasi ');
-        return redirect()->back();        
+        return redirect()->back();
     }
 
     public function ditolak(Request $request,$id){
@@ -127,6 +127,6 @@ class HomeController extends Controller
         $data->update();
 
         Alert::success('Sukses', 'Megubah Konfirmasi ');
-        return redirect()->back();        
+        return redirect()->back();
     }
 }

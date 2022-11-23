@@ -51,7 +51,7 @@
                            <a href="/konfirmasi/{{$o->id}}" class="btn btn-warning"><i class="fa fa-check" aria-hidden="true"></i></a> &nbsp
                            <a href="{{$o->id}}/konfirmasi" class="btn btn-danger" ><i class="fa fa-times" aria-hidden="true"></i></a>
                           @elseif($o->status = "selesi")
-                            <button class="btn btn-primary" >PDF</button>&nbsp
+                            <a href="/invoice/{{$o->id}}" class="btn btn-primary" >PDF</a>&nbsp
                             <a href="{{$o->id}}/konfirmasi" class="btn btn-danger" ><i class="fa fa-times" aria-hidden="true"></i></a>
                           @endif
                           </td>

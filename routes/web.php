@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SifatPesananController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PDFController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +28,7 @@ Route::get('/login',[AuthController::class ,'login'])->name('login');
 Route::post('/postregister',[AuthController::class, 'postregister']);
 Route::post('/postlogin',[AuthController::class, 'postlogin']);
 Route::get('/logout',[AuthController::class, 'logout']);
-
+Route::get('/invoice/{id}', [PDFController::class, 'invoice']);
 
 Route::middleware(['auth','role:Admin'])->group(function(){
     Route::get('/dashboard',[HomeController::class, 'indexAdmin']);
