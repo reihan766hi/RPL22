@@ -51,6 +51,8 @@ Route::middleware(['auth','role:Admin'])->group(function(){
     Route::post('/daftarproduk/tambahproduk',[ProdukController::class, 'tambahproduk']);
     Route::get('/daftarproduk/hapusproduk/{id}',[ProdukController::class, 'hapusproduk']);
     Route::post('/daftarproduk/editproduk/{id}',[ProdukController::class, 'editproduk']);
+    Route::get('/konfirmasi/{id}',[HomeController::class, 'setuju']);
+    Route::get('{id}/konfirmasi',[HomeController::class, 'ditolak']);
 });
 
 Route::middleware(['auth','role:Pemesan'])->group(function(){

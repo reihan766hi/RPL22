@@ -11,4 +11,7 @@ class Produk extends Model
     public function produkbus(){
         return $this->belongsTo(DaftarBus::class,'kode_bus');
     }
+    public function produk(){
+        return $this->hasMany(Order::class,'id');
+    }
 }

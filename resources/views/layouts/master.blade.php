@@ -127,8 +127,16 @@
                with font-awesome or any other icon font library -->
       @if (auth()->user()->role == constanta::admin)
           <li class="nav-item">
+                <a href="/dashboard" class="nav-link">
+                  <i class="nav-icon fa fa-list"></i>
+                  <p>
+                  Pesanan
+                  </p>
+                </a>
+              </li>
+          <li class="nav-item">
             <a href="/daftarproduk" class="nav-link">
-              <i class="nav-icon fa fa-list"></i>
+              <i class="nav-icon fa fa-shopping-cart"></i>
               <p>
                Produk
               </p>
@@ -138,7 +146,7 @@
             <a href="/daftarbus" class="nav-link">
               <i class="nav-icon fa fa-bus"></i>
               <p>
-               Daftar Bus
+               Bus
               </p>
             </a>
           </li>

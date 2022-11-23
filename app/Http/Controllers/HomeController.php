@@ -57,7 +57,9 @@ class HomeController extends Controller
     }
 
     public function indexAdmin(){
-        return view("dashboard.index");
+        $daftarbus = DaftarBus::get();
+        $order = Order::get();
+        return view("dashboard.index",compact(['order','daftarbus']));
     }
 
     public function indexHistory(){
@@ -78,7 +80,7 @@ class HomeController extends Controller
         $order->nama = $request->nama;
         $order->email = $request->email;
         $order->notelp = $request->notelp;
-        $order->kode_bus = $request->kodebus;
+        $order->id_produks = 1;
         $order->harga = $request->harga;
         $order->sifat_pemesanan = $request->sifatpemesanan;
         $order->jadwal = $request->jadwal;
@@ -101,12 +103,30 @@ class HomeController extends Controller
         $request->bukti_pembayaran->move(public_path('bukti_pembayaran'), $imageName);
 
         $data = Order::findOrFail($id);
-        $data->status = "Sudah Dibayar";
+        $data->status = "menunggu konfirmasi";
         $data->bukti_pembayaran = $imageName;
         $data->update();
 
         Alert::success('Sukses', 'Upload Bukti Pembayaran');
         return redirect()->back();
 
+    }
+
+    public function setuju(Request $request,$id){
+        $data = Order::findOrFail($id);
+        $data->status = "selesai";
+        $data->update();
+
+        Alert::success('Sukses', 'Konfirmasi ');
+        return redirect()->back();        
+    }
+
+    public function ditolak(Request $request,$id){
+        $data = Order::findOrFail($id);
+        $data->status = "menunggu konfirmasi";
+        $data->update();
+
+        Alert::success('Sukses', 'Megubah Konfirmasi ');
+        return redirect()->back();        
     }
 }
