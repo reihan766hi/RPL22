@@ -90,4 +90,24 @@ class HomeController extends Controller
         Alert::success('Sukses', 'Pesenan Diproses');
         return redirect('/history');
     }
+
+    public function uploadbukti(Request $request,$id){
+
+        $request->validate([
+            'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg|max:3048',
+        ]);
+
+        $imageName = time().'.'.$request->bukti_pembayaran->extension();
+
+        $request->bukti_pembayaran->move(public_path('bukti_pembayaran'), $imageName);
+
+        $data = Order::findOrFail($id);
+        $data->status = "Sudah Dibayar";
+        $data->bukti_pembayaran = $imageName;
+        $data->update();
+
+        Alert::success('Sukses', 'Upload Bukti Pembayaran');
+        return redirect()->back();
+
+    }
 }

@@ -42,7 +42,7 @@
                         <a href="/" class="nav-item nav-link active">Home</a>
 
                         <a href="/history" class="nav-item nav-link">History</a>
-                        <div class="nav-item dropdown">
+                        {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="blog.html" class="dropdown-item">Blog Grid</a>
@@ -51,7 +51,7 @@
                                 <a href="guide.html" class="dropdown-item">Travel Guides</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             </div>
-                        </div>
+                        </div> --}}
                         @if(!Auth::check())
                             <a href="/login" class="nav-item nav-link">Login</a>
                         @else
@@ -63,6 +63,8 @@
         </div>
     </div>
     <!-- Navbar End -->
+
+    @include('sweetalert::alert')
 
     @yield('content')
     <!-- Carousel Start -->

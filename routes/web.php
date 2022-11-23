@@ -56,6 +56,7 @@ Route::middleware(['auth','role:Admin'])->group(function(){
 Route::middleware(['auth','role:Pemesan'])->group(function(){
     Route::get('/formpemesanan/{id}/checkout',[HomeController::class, 'formpemesanan']);
     Route::post('/formpemesanan/checkout/{id}',[HomeController::class, 'checkout']);
+    Route::post('/upload/{id}',[HomeController::class, 'uploadbukti']);
     Route::post('/formpemesanan/{id}/checkout/pesan',[HomeController::class, 'pesan']);
     Route::get('/history',[HomeController::class, 'indexHistory']);
 });
