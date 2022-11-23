@@ -13,7 +13,6 @@ use App\Models\SifatPemesanan;
 class HomeController extends Controller
 {
     public function index(Request $request){
-
         $daftarproduk = Produk::latest()->paginate(6);
         $daftararea1 = DaftarArea::get();
         $daftarbus = DaftarBus::with('produk')->get();

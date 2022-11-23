@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[HomeController::class, 'index']);
-Route::post('/searchresult',[HomeController::class, 'index']);
+Route::get('/searchresult',[HomeController::class, 'index']);
 Route::get('/register',[AuthController::class ,'register']);
 Route::get('/login',[AuthController::class ,'login'])->name('login');
 Route::post('/postregister',[AuthController::class, 'postregister']);
