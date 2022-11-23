@@ -75,12 +75,12 @@ class HomeController extends Controller
         return view("pemesan.home.formpemesanan",compact(['produk']));
     }
 
-    public function pesan(Request $request){
+    public function pesan(Request $request,$id){
         $order = new Order;
         $order->nama = $request->nama;
         $order->email = $request->email;
         $order->notelp = $request->notelp;
-        $order->id_produks = 1;
+        $order->id_produks = $id;
         $order->harga = $request->harga;
         $order->sifat_pemesanan = $request->sifatpemesanan;
         $order->jadwal = $request->jadwal;

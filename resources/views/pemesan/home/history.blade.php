@@ -32,17 +32,6 @@
                                             <td>{{$o->orderproduk->produkbus->kode_bus}} - {{$o->orderproduk->produkbus->jenis}}</td>
                                             <td><i>{{$o->status}}</i></td>
                                             <td>
-<<<<<<< Updated upstream
-                                            @if ($o->bukti_pembayaran)
-                                                <a href="http://127.0.0.1:8000/bukti_pembayaran/{{$o->bukti_pembayaran}}" target="__blank"><img class="img-fluid" src="/bukti_pembayaran/{{$o->bukti_pembayaran}}" alt="img" style="height: 100px; width:100px"></a>
-                                            @endif
-                                            </td>
-                                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$o->id}}">Upload</button></td>
-                                            </tr>
-
-                                        @endif
-                                        @endforeach
-=======
                                                <a href="http://127.0.0.0:8000/bukti_pembayaran/{{$o->bukti_pembayaran}}" target="__blank"><img class="img-fluid" src="/bukti_pembayaran/{{$o->bukti_pembayaran}}" alt="img" style="height: 100px; width:100px"></a>
                                                 </td>
                                             <td>
@@ -52,7 +41,6 @@
                                             <button class="btn btn-primary">Tiket  <i class="fa fa-arrow-circle-down" aria-hidden="true"></i></button>
                                             @endif
                                         </tr>
->>>>>>> Stashed changes
                                         @endforeach
                                     </tbody>
                                     </table>
