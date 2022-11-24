@@ -5,7 +5,8 @@ use App\Models\Produk;
 use App\Models\DaftarArea;
 use App\Models\DaftarBus;
 use App\Models\Order;
-
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\SifatPemesanan;
@@ -117,7 +118,18 @@ class HomeController extends Controller
         $data->status = "selesai";
         $data->update();
 
-        Alert::success('Sukses', 'Konfirmasi ');
+        $datas = [
+            'data' => $data
+        ];
+
+        Mail::to('daniellumbantobing05@gmail.com')->send(new SendEmail($datas));
+
+        if (Mail::failures()) {
+            Alert::success('Error', 'Sorry! Please try again latter');
+       }else if($data){
+            Alert::success('Sukses', 'Approved');
+        }
+
         return redirect()->back();
     }
 
@@ -126,7 +138,7 @@ class HomeController extends Controller
         $data->status = "menunggu konfirmasi";
         $data->update();
 
-        Alert::success('Sukses', 'Megubah Konfirmasi ');
+        Alert::success('Sukses', 'Rejected');
         return redirect()->back();
     }
 }

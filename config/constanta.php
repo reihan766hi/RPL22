@@ -1,9 +1,7 @@
 <?php
-namespace App;
-class constanta{
+    return [
 
-    const admin = 'Admin';
-
-}
-
+        'admin' => 'Admin',
+        'manajer' => 'Manajer'
+    ]
 ?>
