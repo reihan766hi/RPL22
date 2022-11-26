@@ -128,6 +128,15 @@
 
 	<body>
 
+        @php
+        $arrNoSeat = [];
+        foreach ($datas['data']->seat as $val) {
+
+            $arrNoSeat[] += $val->no_seat;
+
+        }
+        @endphp
+
 		<div class="invoice-box">
 		<h1 class="title">Shutle<span class="green">Bus</span></h1>
 			<h2 class="title1">Thanks For your Payment</h2>
@@ -140,6 +149,10 @@
 					<td>Destinasi</td>
 					<td>Bus</td>
                     <td>Jadwal</td>
+                    @if($datas['data']->sifat_pemesanan == "PRIBADI")
+                        <td>Jumlah Seat</td>
+                        <td>No Seat</td>
+                    @endif
                     <td>Price</td>
 				</tr>
 
@@ -147,10 +160,16 @@
 					<td>{{$datas['data']->orderproduk->produkbus->area->asal}} - {{$datas['data']->orderproduk->produkbus->area->tujuan}}</td>
                     <td>{{$datas['data']->orderproduk->produkbus->kode_bus}} - {{$datas['data']->orderproduk->produkbus->jenis}}</td>
                     <td>{{$datas['data']->jadwal}}</td>
+                    @if($datas['data']->sifat_pemesanan == "PRIBADI")
+                        <td>{{count($datas['data']->seat)}}</td>
+                        <td>{{implode (", ",$arrNoSeat)}}</td>
+                    @endif
 					<td>{{$datas['data']->orderproduk->harga}}</td>
 				</tr>
 				<tr class="total">
 					<td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
 					<td>Total: {{$datas['data']->orderproduk->harga}}</td>

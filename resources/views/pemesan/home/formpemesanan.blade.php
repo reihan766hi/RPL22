@@ -63,12 +63,68 @@
         </div>
     </div>
     <!-- Navbar End -->
-
+    @include('sweetalert::alert')
             <!-- Registration Start -->
             <div class="container-fluid bg-registration py-5" style="margin-top:-50px">
                 <div class="container py-5">
                     <div class="row align-items-center">
-                        <div class="col-lg-7 mb-5 mb-lg-0">
+                        @foreach($produk as $p)
+                        @if ($p->sifat_pemesanan == "PRIBADI")
+                        <div class="col-lg-6">
+                            <div class="card border-0">
+                                <div class="card-header bg-primary text-center p-4">
+                                    <h1 class="text-white m-0">Seat</h1>
+                                </div>
+                                <div class="card-body rounded-bottom bg-white p-5">
+                                    <form method="post" action="/formpemesanan/{{$p->id}}/checkout/pesan">
+                                        @csrf
+
+                                        <div class="container">
+                                            <div class="row">
+                                                @php
+
+                                                for ($i = 1; $i <= 24; $i++){
+                                                        $finded = false;
+
+                                                    foreach ($seat as $d){
+
+
+                                                        if($i == (int) $d->no_seat) {
+                                                            $finded = true;
+                                                            break;
+                                                        }
+
+                                                    }
+                                                        @endphp
+                                                        <div class="col-2">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" name="no_seat[]" id="inlineCheckbox1" value={{$i}}  {{$finded == true ? 'checked disabled' : ''}}>
+                                                        <label class="form-check-label" for="inlineCheckbox1">{{$i}}</label>
+                                                      </div>
+
+                                                  </div>
+
+                                                  @php
+                                                    }
+                                                  @endphp
+
+
+
+
+
+
+
+                                            </div>
+                                          </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        @else
+                        <div class="col-lg-6 mb-5 mb-lg-0">
                             <div class="mb-4">
                                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">ShutleBus</h6>
                                 <h1 class="text-white"><span class="text-primary">Nikamti Perjalanan</span> Anda dengan ShutleBus</h1>
@@ -79,27 +135,30 @@
                                 <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Terjamin</li>
                             </ul>
                         </div>
-                        <div class="col-lg-5">
+                        @endif
+
+                        <div class="col-lg-6">
                             <div class="card border-0">
                                 <div class="card-header bg-primary text-center p-4">
                                     <h1 class="text-white m-0">FORM PEMESANAN</h1>
                                 </div>
                                 <div class="card-body rounded-bottom bg-white p-5">
-                                @foreach($produk as $p)
+                                    @if ($p->sifat_pemesanan == "INSTANSI")
                                     <form method="post" action="/formpemesanan/{{$p->id}}/checkout/pesan">
                                         @csrf
-                                        
+                                    @endif
+
                                         <div class="form-group">
                                             <input type="text" class="form-control p-4" name="nama" value="{{auth()->user()->name}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control p-4" name="email" value="{{auth()->user()->email}}" required="required" />
+                                            <input type="email" class="form-control p-4" name="email" value="{{auth()->user()->email}}" required="required" readonly/>
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control p-4" name="notelp" value="{{auth()->user()->no_hp}}" required="required" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control p-4" name="harga" value="Rp.{{$p->harga}}" required="required" />
+                                            <input type="text" class="form-control p-4" name="harga" value="{{$p->harga}}" required="required" />
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control p-4" name="sifatpemesanan" value="{{$p->sifat_pemesanan}}" required="required" />
@@ -107,10 +166,47 @@
                                         <div class="form-group">
                                             <input type="date" class="form-control p-4" name="jadwal" value="{{$p->jadwal}}" required="required" />
                                         </div>
-                                        
+                                        @if ($p->sifat_pemesanan == "PRIBADI")
+
+                                                @if ($seat->count() == 24)
+                                                    <div>
+                                                        <button class="btn btn-danger btn-block py-3" type="button">Seat Sudah Penuh</button>
+                                                    </div>
+                                                @elseif(sizeof($seat) > 0)
+
+                                                @php
+                                                    $isTrue = false;
+                                                @endphp
+                                                @foreach ($seat as $data)
+                                                    @if ($data->order->email == Auth::user()->email)
+                                                        @php
+                                                            $isTrue = true;
+                                                        @endphp
+                                                    @break
+
+                                                      @endif
+                                                @endforeach
+                                                @if ($isTrue)
+                                                        <div>
+                                                            <button class="btn btn-warning btn-block py-3" type="button">Sudah Memesan</button>
+                                                        </div>
+                                                    @else
+                                                        <div>
+                                                            <button class="btn btn-primary btn-block py-3" type="submit">Pembayaran</button>
+                                                        </div>
+                                                    @endif
+                                                @else
+                                                    <div>
+                                                        <button class="btn btn-primary btn-block py-3" type="submit">Pembayaran</button>
+                                                    </div>
+                                                @endif
+
+                                        @else
                                         <div>
                                             <button class="btn btn-primary btn-block py-3" type="submit">Pembayaran</button>
                                         </div>
+                                        @endif
+
                                     </form>
                                     @endforeach
                                 </div>

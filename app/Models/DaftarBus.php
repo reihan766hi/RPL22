@@ -15,4 +15,8 @@ class DaftarBus extends Model
     public function produk(){
         return $this->hasMany(Produk::class,'kode_bus');
     }
+
+    public function seat(){
+        return $this->hasMany(Seat::class);
+    }
 }

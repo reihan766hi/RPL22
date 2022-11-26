@@ -18,6 +18,7 @@
                                         <th scope="col">Asal - Tujuan</th>
                                         <th scope="col">Jadwal</th>
                                         <th scope="col">Bus</th>
+                                        <th scope="col">Harga</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Bukti</th>
                                         <th scope="col"></th>
@@ -30,6 +31,7 @@
                                             <td>{{$o->orderproduk->produkbus->area->asal}} - {{$o->orderproduk->produkbus->area->tujuan}}</td>
                                             <td>{{$o->jadwal}}</td>
                                             <td>{{$o->orderproduk->produkbus->kode_bus}} - {{$o->orderproduk->produkbus->jenis}}</td>
+                                            <td>{{$o->harga}}</td>
                                             <td><i>{{$o->status}}</i></td>
                                             <td>
                                                <a href="{{url('') }}/bukti_pembayaran/{{$o->bukti_pembayaran}}" target="__blank"><img class="img-fluid" src="/bukti_pembayaran/{{$o->bukti_pembayaran}}" alt="img" style="height: 100px; width:100px"></a>

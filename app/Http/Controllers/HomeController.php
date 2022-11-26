@@ -6,6 +6,7 @@ use App\Models\DaftarArea;
 use App\Models\DaftarBus;
 use App\Models\Order;
 use App\Mail\SendEmail;
+use App\Models\Seat;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -72,22 +73,49 @@ class HomeController extends Controller
     public function formpemesanan($id){
         // $produk = Produk::findOrFail($id)->get();
         $produk = Produk::where('id','=',$id)->get();
-
-        return view("pemesan.home.formpemesanan",compact(['produk']));
+        $seat = Seat::where('id_produk' , '=', $id)->get();
+        return view("pemesan.home.formpemesanan",compact(['produk','seat']));
     }
 
     public function pesan(Request $request,$id){
+
+    if($request->sifatpemesanan == "PRIBADI"){
+
+        if($request->no_seat == null){
+            Alert::success('Error', 'Please fill seats!');
+        }
+
+        $request->validate([
+            'no_seat' => 'required',
+        ]);
+    }
+
+        $produks = Produk::findOrFail($id);
+
         $order = new Order;
         $order->nama = $request->nama;
         $order->email = $request->email;
         $order->notelp = $request->notelp;
         $order->id_produks = $id;
-        $order->harga = $request->harga;
+        $arrSeat = $request->no_seat;
+
+        $order->harga = count($arrSeat) * (float)$request->harga;
         $order->sifat_pemesanan = $request->sifatpemesanan;
         $order->jadwal = $request->jadwal;
         $order->bukti_pembayaran = $request->buktipembayaran;
         $order->status = "menunggu pembayaran";
         $order->save();
+
+        if($request->sifatpemesanan == "PRIBADI"){
+            foreach($arrSeat as $data){
+                $seat = new Seat();
+                $seat->no_seat = $data;
+                $seat->id_order = $order->id;
+                $seat->id_produk = (int)$id;
+                $seat->id_bus = (int)$produks->kode_bus;
+               $seat->save();
+            }
+        }
 
         Alert::success('Sukses', 'Pesenan Diproses');
         return redirect('/history');
@@ -116,7 +144,6 @@ class HomeController extends Controller
     public function setuju(Request $request,$id){
         $data = Order::findOrFail($id);
         $data->status = "selesai";
-        $data->update();
 
         $datas = [
             'data' => $data
@@ -127,6 +154,7 @@ class HomeController extends Controller
         if (Mail::failures()) {
             Alert::success('Error', 'Sorry! Please try again latter');
        }else if($data){
+            $data->update();
             Alert::success('Sukses', 'Approved');
         }
 

@@ -14,4 +14,12 @@ class Produk extends Model
     public function produk(){
         return $this->hasMany(Order::class,'id');
     }
+
+    public function order(){
+        return $this->hasMany(Order::class,'id_produks');
+    }
+
+    public function seat(){
+        return $this->hasMany(Seat::class);
+    }
 }

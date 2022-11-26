@@ -11,5 +11,8 @@ class Order extends Model
         return $this->belongsTo(Produk::class,'id_produks');
     }
 
+    public function seat(){
+        return $this->hasMany(Seat::class,'id_order');
+    }
 
 }
