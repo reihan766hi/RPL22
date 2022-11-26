@@ -149,7 +149,7 @@ class HomeController extends Controller
             'data' => $data
         ];
 
-        Mail::to('daniellumbantobing05@gmail.com')->send(new SendEmail($datas));
+        Mail::to($data->email)->send(new SendEmail($datas));
 
         if (Mail::failures()) {
             Alert::success('Error', 'Sorry! Please try again latter');
