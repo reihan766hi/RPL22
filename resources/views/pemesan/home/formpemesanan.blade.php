@@ -85,7 +85,7 @@
 
                                                 for ($i = 1; $i <= 24; $i++){
                                                         $finded = false;
-
+                                                        $part = "";
                                                     foreach ($seat as $d){
 
 
@@ -94,12 +94,32 @@
                                                             break;
                                                         }
 
+
+                                                    }
+
+                                                    if($i > 0 && $i < 5){
+                                                            $part = "A";
+                                                    }elseif($i > 4 && $i < 9){
+                                                            $part = "B";
+
+                                                    }elseif($i > 8 && $i < 13){
+                                                            $part = "C";
+
+                                                    }elseif($i > 12 && $i < 17){
+                                                            $part = "D";
+
+                                                    }elseif($i > 16 && $i < 21){
+                                                            $part = "E";
+
+                                                    }elseif($i > 20 && $i < 25){
+                                                            $part = "F";
+
                                                     }
                                                         @endphp
-                                                        <div class="col-2">
+                                                        <div class="col-3">
                                                     <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="checkbox" name="no_seat[]" id="inlineCheckbox1" value={{$i}}  {{$finded == true ? 'checked disabled' : ''}}>
-                                                        <label class="form-check-label" for="inlineCheckbox1">{{$i}}</label>
+                                                        <label class="form-check-label" for="inlineCheckbox1">{{$part}}{{$i}}</label>
                                                       </div>
 
                                                   </div>

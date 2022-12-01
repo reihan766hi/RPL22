@@ -67,11 +67,12 @@
           <div class="modal-body">
           <form action="daftarproduk/editproduk/{{$da->id}}" method="post" enctype="multipart/form-data">
           @csrf
-
           <div class="form-group">
              <label for="exampleFormControlSelect1">Kode Bus</label>
               <select class="form-control " id="exampleFormControlSelect1" name="kodebus">
-                <option value="{{$da->id}}" selected><A>{{$da->produkbus->kode_bus}}</A></option>
+                @foreach ($daftarbus as $data)
+                    <option value="{{$data->id}}" selected><A>{{ $data->kode_bus}} </A></option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
@@ -135,8 +136,6 @@
                   <tr>
                     <th>No</th>
                     <th>Jenis Bus</th>
-                    <th>Kode Bus</th>
-                    <th>Kode Area</th>
                     <th>Asal</th>
                     <th>Tujuan</th>
                     <th>Harga </th>
@@ -147,13 +146,15 @@
                   </tr>
                   </thead>
                   <tbody>
+                    @php
+
+                        $no = 0;
+                    @endphp
                   @foreach($daftarbus as $key=>$d)
                   @foreach($d->produk as $prd)
                     <tr>
-                        <td>{{$key+1}}</td>
+                        <td>{{$no+=1}}</td>
                         <td>{{$d->jenis}}</td>
-                        <td>{{$d->kode_bus}}</td>
-                        <td>{{$d->area->kode_area}}</td>
                         <td>{{$d->area->asal}}</td>
                         <td>{{$d->area->tujuan}}</td>
                         <td>Rp.{{$prd->harga}}</td>
@@ -163,8 +164,8 @@
                         <img class="img-fluid" src="/gambar_bus/{{$d->gambar_bus}}" alt="img" style="height: 100px; width:100px">
                         </td>
                         <td>
-                        <button type="button" class="btn  btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit{{$da->id}}">Edit</button> &nbsp
-                           <a href="#" class="btn btn-danger btn-sm delete-produk" akun-id="{{$d->id}}" akun-name="{{$d->kode_bus}}">Hapus</a>
+                        <button type="button" class="btn  btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit{{$prd->id}}">Edit</button> &nbsp
+                           <a href="#" class="btn btn-danger btn-sm delete-produk" akun-id="{{$prd->id}}" akun-name="{{$d->kode_bus}}">Hapus</a>
                         </td>
                     </tr>
                   @endforeach
