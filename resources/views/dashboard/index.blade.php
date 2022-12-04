@@ -39,7 +39,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer" style="width:100px;">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+              <a href="#" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
             </div>
           </div>
 
