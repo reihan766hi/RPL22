@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\SifatPemesanan;
+Use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -59,9 +60,20 @@ class HomeController extends Controller
     }
 
     public function indexAdmin(){
+        $now = date('l,d M Y');
         $daftarbus = DaftarBus::get();
         $order = Order::get();
-        return view("dashboard.index",compact(['order','daftarbus']));
+        $totalOrder = Order::where('status','=',"menunggu konfirmasi")->count();
+        $date = date('Y-m-d');
+        $jumlahPesanan = Order::where('status','=',"selesai")->where('jadwal','=',$date)->count();
+        $jumlahPendapatan = Order::where('status','=',"selesai")->where('jadwal','=',$date)->sum('harga');
+        $bulan = date('m');
+        $totalOrderMonth = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->count();
+        $tOM = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->sum('harga');
+        $totalInstitusi = Order::where('status','=',"selesai")->where('sifat_pemesanan','=',"INSTANSI")->count();
+        $tPI = Order::where('status','=',"selesai")->where('sifat_pemesanan','=',"INSTANSI")->sum('harga');
+        return view("dashboard.index",compact(['order','daftarbus','totalOrder','jumlahPesanan','date','jumlahPendapatan','totalOrderMonth','tOM','now','totalInstitusi','tPI']));
+
     }
 
     public function indexHistory(){
@@ -88,8 +100,7 @@ class HomeController extends Controller
         $request->validate([
             'no_seat' => 'required',
         ]);
-    }
-
+        
         $produks = Produk::findOrFail($id);
 
         $order = new Order;
@@ -116,6 +127,23 @@ class HomeController extends Controller
                $seat->save();
             }
         }
+    }else{
+        $produks = Produk::findOrFail($id);
+
+        $order = new Order;
+        $order->nama = $request->nama;
+        $order->email = $request->email;
+        $order->notelp = $request->notelp;
+        $order->id_produks = $id;
+        $arrSeat = $request->no_seat;
+
+        $order->harga = $request->harga;
+        $order->sifat_pemesanan = $request->sifatpemesanan;
+        $order->jadwal = $request->jadwal;
+        $order->bukti_pembayaran = $request->buktipembayaran;
+        $order->status = "menunggu pembayaran";
+        $order->save();
+    }
 
         Alert::success('Sukses', 'Pesenan Diproses');
         return redirect('/history');

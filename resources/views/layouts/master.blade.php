@@ -81,11 +81,24 @@
         </div>
       </li>
 
-
+            <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">
+            {{$totalOrder}}
+          </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">Pemberitahuan</span>
+          <div class="dropdown-divider"></div>
+          <a href="/dashboard" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 request booking
+          </a>
+      </li>  
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="fas fa-cog"></i>
+            <i class="fas fa-sign-out-alt"></i>
           <span class="badge badge-warning navbar-badge"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
@@ -95,6 +108,7 @@
 
         </div>
       </li>
+      
 
     </ul>
   </nav>

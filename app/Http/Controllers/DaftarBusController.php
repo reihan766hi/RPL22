@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DaftarBus;
 use App\Models\DaftarArea;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -13,7 +14,8 @@ class DaftarBusController extends Controller
 
         $daftarbus = DaftarBus::latest()->paginate(10);
         $daftararea = DaftarArea::get();
-        return view('daftarbus.index',compact(['daftarbus','daftararea']));
+        $totalOrder = Order::where('status','=',"menunggu konfirmasi")->count();
+        return view('daftarbus.index',compact(['daftarbus','daftararea','totalOrder']));
     }
 
     public function tambahBus(Request $request){

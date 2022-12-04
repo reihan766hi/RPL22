@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\DaftarArea;
 use App\Models\DaftarBus;
 use App\Models\Produk;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Alert;
 use App\Models\SifatPemesanan;
@@ -15,7 +16,8 @@ class ProdukController extends Controller
         $daftarbus = DaftarBus::get();
         $daftarproduk = Produk::latest()->paginate(6);
         $sifat = SifatPemesanan::get();
-        return view('daftarproduk.index',compact(['daftarproduk','daftararea','daftarbus','sifat']));
+        $totalOrder = Order::where('status','=',"menunggu konfirmasi")->count();
+        return view('daftarproduk.index',compact(['daftarproduk','daftararea','daftarbus','sifat','totalOrder']));
     }
 
     public function tambahproduk(Request $request){

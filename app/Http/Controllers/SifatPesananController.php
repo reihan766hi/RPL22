@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SifatPemesanan;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -11,7 +12,8 @@ class SifatPesananController extends Controller
     public function index(){
 
         $data = SifatPemesanan::paginate(10);
-        return view('sifatpemesanan.index',compact(['data']));
+        $totalOrder = Order::where('status','=',"menunggu konfirmasi")->count();
+        return view('sifatpemesanan.index',compact(['data','totalOrder']));
     }
 
     public function tambahSifat(Request $request){
