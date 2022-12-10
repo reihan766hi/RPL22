@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\SifatPemesanan;
 Use Carbon\Carbon;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -69,33 +70,36 @@ class HomeController extends Controller
         $jumlahPendapatan = Order::where('status','=',"selesai")->where('jadwal','=',$date)->sum('harga');
         $bulan = date('m');
         $bulan2 = date('F');
+        $tahun = date('Y');
         $totalOrderMonth = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->count();
         $tOM = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->sum('harga');
         $totalInstitusi = Order::where('status','=',"selesai")->where('sifat_pemesanan','=',"INSTANSI")->count();
         $tPI = Order::where('status','=',"selesai")->where('sifat_pemesanan','=',"INSTANSI")->sum('harga');
 
-        $getArea = Order::get();
+        $getArea = DaftarArea::get();
+        $totalArea = Order::select('kode_area','harga')->where('status','=',"selesai")->distinct()->groupBy('kode_area','harga')->get();
+        $sumArea = Order::where('status','=',"selesai")->get();
 
         $year = $request->tahun;
         $month = $request->bulan;
         $area = $request->area;
+        $dataArea = "";
 
         if($request->area == null){
             $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$month.'%')->where('jadwal','like',$year.'%')->get();
         }else{
-            $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$month.'%')->where('jadwal','like',$year.'%')->where('id_produks','=',$area)->get();
-        } 
-        return view("dashboard.index",compact(['order','daftarbus','totalOrder','jumlahPesanan','date','jumlahPendapatan','totalOrderMonth','tOM','now','totalInstitusi','tPI','bulan2','data','year','getArea']));
+            $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$month.'%')->where('jadwal','like',$year.'%')->where('kode_area','like','%'.$area.'%')->get();
+        }
+        
+        
+        if($request->month == null){
+            $anjeng = Order::where('status','=',"selesai")->where('kode_area','like','%'.$area.'%')->where('jadwal','like',$year.'%')->get();
+        }
+       
+        return view("dashboard.index",compact(['order','daftarbus','totalOrder','jumlahPesanan','date','jumlahPendapatan','totalOrderMonth','tOM','now','totalInstitusi','tPI','bulan2','tahun','data','year','getArea','totalArea','sumArea']));
 
     }
 
-    // public function filterIndex(Request $request){
-    //     $year = $request->tahun;
-    //     $month = $request->bulan;
-    //     $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->where('jadwal','like',$tahun.'%')->get();
-
-    //     return redirect()->back();
-    // }
 
     public function indexHistory(){
         $order = Order::where('nama','=',auth()->user()->name)->latest()->paginate(1);
@@ -129,6 +133,8 @@ class HomeController extends Controller
         $order->email = $request->email;
         $order->notelp = $request->notelp;
         $order->id_produks = $id;
+        $order->kode_bus = $request->kodebus;
+        $order->kode_area = $request->kodearea;
         $arrSeat = $request->no_seat;
 
         $order->harga = count($arrSeat) * (float)$request->harga;
@@ -156,6 +162,8 @@ class HomeController extends Controller
         $order->email = $request->email;
         $order->notelp = $request->notelp;
         $order->id_produks = $id;
+        $order->kode_bus = $request->kodebus;
+        $order->kode_area = $request->kodearea;
         $arrSeat = $request->no_seat;
 
         $order->harga = $request->harga;

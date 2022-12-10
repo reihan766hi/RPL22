@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string("email");
             $table->string("notelp");
             $table->string("id_produks");
+            $table->string("kode_area");
+            $table->string("kode_bus");
             $table->string("harga");
             $table->string("sifat_pemesanan");
             $table->date("jadwal");

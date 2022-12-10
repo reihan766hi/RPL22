@@ -23,7 +23,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+              <a href="/pdftransaksi/1" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
             </div>
           </div>
 
@@ -39,7 +39,7 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+              <a href="/pdftransaksi/2" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
             </div>
           </div>
 
@@ -56,7 +56,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+              <a href="/pdftransaksi/3" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
             </div>
           </div>
       </div>
@@ -75,7 +75,8 @@
             <div class="form-group">
             <label for="exampleFormControlSelect1">Periode</label>
               <select class="form-control " id="tahun" name="tahun">
-              <option value="2022" selected>2022</option>
+              <option value="2022" selected>{{$tahun}}</option>
+              <option value="2022">2022</option>
               <option value="2021">2021</option>
               <option value="2020">2020</option>
               <option value="2019">2019</option>
@@ -90,7 +91,7 @@
           <div class="form-group">
               <label for="exampleFormControlSelect1">Periode</label>
               <select class="form-control " id="bulan" name="bulan">
-              <option value="12" selected>{{$bulan2}}</option>
+              <option value="">Select</option>
               <option value="01">Januari</option>
               <option value="02">Febuari</option>
               <option value="03">Maret</option>
@@ -114,7 +115,7 @@
               <select class="form-control " id="area" name="area">
                 <option value="">All</option>
                 @foreach($getArea as $a)
-                <option value="{{$a->id_produks}}">{{$a->orderproduk->produkbus->area->kode_area}} | {{$a->orderproduk->produkbus->area->asal}} - {{$a->orderproduk->produkbus->area->tujuan}}</option>
+                <option value="{{$a->kode_area}}">{{$a->kode_area}} | {{$a->asal}} - {{$a->tujuan}}</option>
                 @endforeach
               </select>
             </div>
@@ -136,7 +137,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-              <div><span>Total</span></div> 
+              <div><span>Total Periode </span></div> 
                 <h3>{{$data->count()}}<sup style="font-size: 20px"></sup></h3>
                 <p>Total Pendapatan</p>
               <h3>Rp.{{$data->sum('harga')}}</h3>
@@ -144,18 +145,18 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+              <a href="/pdftransaksi/4/{{$data->id}}" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
             </div>
           </div>
 
           <div class="col-lg-3 col-6">  
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-danger">
               <div class="inner">
-              <div><span>Total</span></div> 
-                <h3>{{$data->count()}}<sup style="font-size: 20px"></sup></h3>
+              <div><span>Total Area</span></div> 
+                <h3>{{$totalArea->count()}}<sup style="font-size: 20px"></sup></h3>
                 <p>Total Pendapatan</p>
-              <h3>Rp.{{$data->sum('harga')}}</h3>
+              <h3>Rp.{{$sumArea->sum('harga')}}</h3>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>

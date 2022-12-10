@@ -29,10 +29,12 @@ Route::post('/postregister',[AuthController::class, 'postregister']);
 Route::post('/postlogin',[AuthController::class, 'postlogin']);
 Route::get('/logout',[AuthController::class, 'logout']);
 Route::get('/invoice/{id}', [PDFController::class, 'invoice']);
+Route::get('/pdftransaksi/{id}',[PDFController::class, 'pdftransaksi']);
 
 Route::middleware(['auth','role:Admin'])->group(function(){
     Route::get('/dashboard',[HomeController::class, 'indexAdmin']);
     Route::get('/dashboard/filter',[HomeController::class, 'filterIndex']);
+    
     Route::get('/daftarpengguna',[DaftarPenggunaController::class, 'index']);
     Route::get('/daftarbus',[DaftarBusController::class, 'index']);
     Route::get('/daftararea',[DaftarAreaController::class, 'index']);

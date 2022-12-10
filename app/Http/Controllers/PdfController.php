@@ -18,4 +18,30 @@ class PdfController extends Controller
 
         return $pdf->download('invoice.pdf');
     }
+
+    public function pdfTransaksi($id){
+
+        if($id == 1){
+            $date = date('Y-m-d');
+            $data = [
+                'order' => Order::where('status','=',"selesai")->where('jadwal','=',$date)->get()
+            ];
+            $pdf = PDF::loadview('pdf.transaksi', $data);
+            //mendownload laporan.pdf
+            return $pdf->download('transaksi.pdf');
+        }else if($id == 2){
+            $bulan = date('m');
+            $data = [
+                'order' => Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->get()
+            ];
+            $pdf = PDF::loadview('pdf.transaksi', $data);
+            return $pdf->download('transaksi.pdf');
+        }else if($id == 3){
+            $data = [
+                'order' => Order::where('status','=',"selesai")->where('sifat_pemesanan','=',"INSTANSI")->get()
+            ];
+            $pdf = PDF::loadview('pdf.transaksi', $data);
+            return $pdf->download('transaksi.pdf');
+        }
+    }
 }

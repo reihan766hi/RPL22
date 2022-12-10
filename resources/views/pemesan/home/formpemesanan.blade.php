@@ -178,6 +178,12 @@
                                             <input type="text" class="form-control p-4" name="notelp" value="{{auth()->user()->no_hp}}" required="required" />
                                         </div>
                                         <div class="form-group">
+                                            <input type="text" class="form-control p-4" name="kodebus" value="{{$p->produkbus->kode_bus}}" required="required" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control p-4" name="kodearea" value="{{$p->produkbus->area->kode_area}}" required="required" />
+                                        </div>
+                                        <div class="form-group">
                                             <input type="text" class="form-control p-4" name="harga" value="{{$p->harga}}" required="required" />
                                         </div>
                                         <div class="form-group">
