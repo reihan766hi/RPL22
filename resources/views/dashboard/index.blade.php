@@ -60,6 +60,111 @@
             </div>
           </div>
       </div>
+      <hr /> 
+      
+      <div class="row">
+        <div class="col-lg-3 col-6">
+        
+        </div>
+      </div>
+ 
+      <form action="/dashboard" method="get" enctype="multipart/form-data">
+      @csrf
+      <div class="row">
+      <div class="col-lg-3 col-6">
+            <div class="form-group">
+            <label for="exampleFormControlSelect1">Periode</label>
+              <select class="form-control " id="tahun" name="tahun">
+              <option value="2022" selected>2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              </select>
+            </div>
+           
+        </div>
+
+        <div class="col-lg-3 col-6">
+          <div class="form-group">
+              <label for="exampleFormControlSelect1">Periode</label>
+              <select class="form-control " id="bulan" name="bulan">
+              <option value="12" selected>{{$bulan2}}</option>
+              <option value="01">Januari</option>
+              <option value="02">Febuari</option>
+              <option value="03">Maret</option>
+              <option value="04">April</option>
+              <option value="05">Mei</option>
+              <option value="06">Juni</option>
+              <option value="07">Juli</option>
+              <option value="08">Agustus</option>
+              <option value="09">September</option>
+              <option value="10">Oktober</option>
+              <option value="11">November</option>
+              <option value="12">Desember</option>
+              </select>
+            </div>
+            
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="form-group">
+            <label for="exampleFormControlSelect1">Area</label>
+              <select class="form-control " id="area" name="area">
+                <option value="">All</option>
+                @foreach($getArea as $a)
+                <option value="{{$a->id_produks}}">{{$a->orderproduk->produkbus->area->kode_area}} | {{$a->orderproduk->produkbus->area->asal}} - {{$a->orderproduk->produkbus->area->tujuan}}</option>
+                @endforeach
+              </select>
+            </div>
+   
+        </div>
+
+        <div class="col-lg-3 col-6">
+        <label for="exampleFormControlSelect1">filter</label>
+            <div>
+              <button type="submit" class="btn btn-primary">Filter</button><br>
+            </div>
+          
+        </div>
+      </div>    
+      </form>  
+
+      <div class="row">
+        <div class="col-lg-3 col-6">  
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              <div><span>Total</span></div> 
+                <h3>{{$data->count()}}<sup style="font-size: 20px"></sup></h3>
+                <p>Total Pendapatan</p>
+              <h3>Rp.{{$data->sum('harga')}}</h3>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">  
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              <div><span>Total</span></div> 
+                <h3>{{$data->count()}}<sup style="font-size: 20px"></sup></h3>
+                <p>Total Pendapatan</p>
+              <h3>Rp.{{$data->sum('harga')}}</h3>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+            </div>
+          </div>
+      </div>
+
   </div>
 </section>
 

@@ -59,22 +59,43 @@ class HomeController extends Controller
         return view('pemesan.home.index',compact(['daftarproduk','daftararea1','daftarbus','daftarsifat']));
     }
 
-    public function indexAdmin(){
+    public function indexAdmin(Request $request){
         $now = date('l,d M Y');
         $daftarbus = DaftarBus::get();
-        $order = Order::get();
+        $order = Order::orderBy('updated_at', 'desc')->get();
         $totalOrder = Order::where('status','=',"menunggu konfirmasi")->count();
         $date = date('Y-m-d');
         $jumlahPesanan = Order::where('status','=',"selesai")->where('jadwal','=',$date)->count();
         $jumlahPendapatan = Order::where('status','=',"selesai")->where('jadwal','=',$date)->sum('harga');
         $bulan = date('m');
+        $bulan2 = date('F');
         $totalOrderMonth = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->count();
         $tOM = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->sum('harga');
         $totalInstitusi = Order::where('status','=',"selesai")->where('sifat_pemesanan','=',"INSTANSI")->count();
         $tPI = Order::where('status','=',"selesai")->where('sifat_pemesanan','=',"INSTANSI")->sum('harga');
-        return view("dashboard.index",compact(['order','daftarbus','totalOrder','jumlahPesanan','date','jumlahPendapatan','totalOrderMonth','tOM','now','totalInstitusi','tPI']));
+
+        $getArea = Order::get();
+
+        $year = $request->tahun;
+        $month = $request->bulan;
+        $area = $request->area;
+
+        if($request->area == null){
+            $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$month.'%')->where('jadwal','like',$year.'%')->get();
+        }else{
+            $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$month.'%')->where('jadwal','like',$year.'%')->where('id_produks','=',$area)->get();
+        } 
+        return view("dashboard.index",compact(['order','daftarbus','totalOrder','jumlahPesanan','date','jumlahPendapatan','totalOrderMonth','tOM','now','totalInstitusi','tPI','bulan2','data','year','getArea']));
 
     }
+
+    // public function filterIndex(Request $request){
+    //     $year = $request->tahun;
+    //     $month = $request->bulan;
+    //     $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$bulan.'%')->where('jadwal','like',$tahun.'%')->get();
+
+    //     return redirect()->back();
+    // }
 
     public function indexHistory(){
         $order = Order::where('nama','=',auth()->user()->name)->latest()->paginate(1);

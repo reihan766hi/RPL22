@@ -32,6 +32,7 @@ Route::get('/invoice/{id}', [PDFController::class, 'invoice']);
 
 Route::middleware(['auth','role:Admin'])->group(function(){
     Route::get('/dashboard',[HomeController::class, 'indexAdmin']);
+    Route::get('/dashboard/filter',[HomeController::class, 'filterIndex']);
     Route::get('/daftarpengguna',[DaftarPenggunaController::class, 'index']);
     Route::get('/daftarbus',[DaftarBusController::class, 'index']);
     Route::get('/daftararea',[DaftarAreaController::class, 'index']);
