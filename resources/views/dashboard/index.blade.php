@@ -15,7 +15,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <div><span>Total Hari Ini</span> <p style="float:right;">{{ $now}}</p></div> 
+                <div><span>Total Hari Ini</span> <p style="float:right;">{{ $now}}</p></div>
               <h3>{{$jumlahPesanan}}</h3>
               <p>Total Pendapatan</p>
               <h3>Rp.{{$jumlahPendapatan}}</h3>
@@ -31,7 +31,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-              <div><span>Total Bulan Ini</span></div> 
+              <div><span>Total Bulan Ini</span></div>
                 <h3>{{$totalOrderMonth}}<sup style="font-size: 20px"></sup></h3>
                 <p>Total Pendapatan</p>
               <h3>Rp.{{$tOM}}</h3>
@@ -60,14 +60,14 @@
             </div>
           </div>
       </div>
-      <hr /> 
-      
+      <hr />
+
       <div class="row">
         <div class="col-lg-3 col-6">
-        
+
         </div>
       </div>
- 
+
       <form action="/dashboard" method="get" enctype="multipart/form-data">
       @csrf
       <div class="row">
@@ -84,7 +84,7 @@
               <option value="2017">2017</option>
               </select>
             </div>
-           
+
         </div>
 
         <div class="col-lg-3 col-6">
@@ -106,7 +106,7 @@
               <option value="12">Desember</option>
               </select>
             </div>
-            
+
         </div>
 
         <div class="col-lg-3 col-6">
@@ -119,7 +119,7 @@
                 @endforeach
               </select>
             </div>
-   
+
         </div>
 
         <div class="col-lg-3 col-6">
@@ -127,33 +127,34 @@
             <div>
               <button type="submit" class="btn btn-primary">Filter</button><br>
             </div>
-          
+
         </div>
-      </div>    
-      </form>  
+      </div>
+      </form>
 
       <div class="row">
-        <div class="col-lg-3 col-6">  
+        <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-              <div><span>Total Periode </span></div> 
+              <div><span>Total Periode </span></div>
                 <h3>{{$data->count()}}<sup style="font-size: 20px"></sup></h3>
                 <p>Total Pendapatan</p>
               <h3>Rp.{{$data->sum('harga')}}</h3>
+              {{-- {{$data[0]->id}} --}}
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="/pdftransaksi/4/{{$data->id}}" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
+              <a href="/pdftransaksi/4" class="small-box-footer">Cetak Pdf <i class="fas fa-arrow-circle-down"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-3 col-6">  
+          <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-              <div><span>Total Area</span></div> 
+              <div><span>Total Area</span></div>
                 <h3>{{$totalArea->count()}}<sup style="font-size: 20px"></sup></h3>
                 <p>Total Pendapatan</p>
               <h3>Rp.{{$sumArea->sum('harga')}}</h3>

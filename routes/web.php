@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DaftarPenggunaController;
 use App\Http\Controllers\DaftarBusController;
 use App\Http\Controllers\DaftarAreaController;
@@ -34,7 +35,7 @@ Route::get('/pdftransaksi/{id}',[PDFController::class, 'pdftransaksi']);
 Route::middleware(['auth','role:Admin'])->group(function(){
     Route::get('/dashboard',[HomeController::class, 'indexAdmin']);
     Route::get('/dashboard/filter',[HomeController::class, 'filterIndex']);
-    
+
     Route::get('/daftarpengguna',[DaftarPenggunaController::class, 'index']);
     Route::get('/daftarbus',[DaftarBusController::class, 'index']);
     Route::get('/daftararea',[DaftarAreaController::class, 'index']);
@@ -56,6 +57,7 @@ Route::middleware(['auth','role:Admin'])->group(function(){
     Route::post('/daftarproduk/editproduk/{id}',[ProdukController::class, 'editproduk']);
     Route::get('/konfirmasi/{id}',[HomeController::class, 'setuju']);
     Route::get('{id}/konfirmasi',[HomeController::class, 'ditolak']);
+    Route::get('/chart',[ChartController::class, 'index']);
 });
 
 Route::middleware(['auth','role:Pemesan'])->group(function(){

@@ -36,7 +36,7 @@
  <link rel="stylesheet" href="admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
  <link rel="stylesheet" href="admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
  <link rel="stylesheet" href="admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
+@yield('header')
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -94,7 +94,7 @@
           <a href="/dashboard" class="dropdown-item">
             <i class="fas fa-users mr-2"></i> {{$totalOrder}} request booking
           </a>
-      </li>  
+      </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -108,7 +108,7 @@
 
         </div>
       </li>
-      
+
 
     </ul>
   </nav>
@@ -177,6 +177,14 @@
               <i class="nav-icon fa fa-tags"></i>
               <p>
                Sifat
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/chart" class="nav-link">
+              <i class="far fa-chart-bar"></i>
+              <p>
+              Grafik
               </p>
             </a>
           </li>

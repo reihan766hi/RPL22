@@ -90,12 +90,12 @@ class HomeController extends Controller
         }else{
             $data = Order::where('status','=',"selesai")->where('jadwal','like','_____'.$month.'%')->where('jadwal','like',$year.'%')->where('kode_area','like','%'.$area.'%')->get();
         }
-        
-        
+
+
         if($request->month == null){
             $anjeng = Order::where('status','=',"selesai")->where('kode_area','like','%'.$area.'%')->where('jadwal','like',$year.'%')->get();
         }
-       
+
         return view("dashboard.index",compact(['order','daftarbus','totalOrder','jumlahPesanan','date','jumlahPendapatan','totalOrderMonth','tOM','now','totalInstitusi','tPI','bulan2','tahun','data','year','getArea','totalArea','sumArea']));
 
     }
@@ -125,7 +125,7 @@ class HomeController extends Controller
         $request->validate([
             'no_seat' => 'required',
         ]);
-        
+
         $produks = Produk::findOrFail($id);
 
         $order = new Order;
