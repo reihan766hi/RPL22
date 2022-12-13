@@ -21,7 +21,6 @@ use App\Http\Controllers\PDFController;
 |
 */
 
-
 Route::get('/',[HomeController::class, 'index']);
 Route::get('/searchresult',[HomeController::class, 'index']);
 Route::get('/register',[AuthController::class ,'register']);
@@ -35,7 +34,6 @@ Route::get('/pdftransaksi/{id}',[PDFController::class, 'pdftransaksi']);
 Route::middleware(['auth','role:Admin'])->group(function(){
     Route::get('/dashboard',[HomeController::class, 'indexAdmin']);
     Route::get('/dashboard/filter',[HomeController::class, 'filterIndex']);
-
     Route::get('/daftarpengguna',[DaftarPenggunaController::class, 'index']);
     Route::get('/daftarbus',[DaftarBusController::class, 'index']);
     Route::get('/daftararea',[DaftarAreaController::class, 'index']);

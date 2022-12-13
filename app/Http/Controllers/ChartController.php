@@ -21,6 +21,7 @@ class ChartController extends Controller
         ->where("status", "selesai")
         ->leftjoin('daftar_buses as b', 'b.kode_bus', '=', 'a.kode_bus')
         ->groupBy('a.kode_bus','b.pabrikan' , 'b.plat_nomor')
+        ->orderBy("b.pabrikan")
         ->get();
 
          $data = [];

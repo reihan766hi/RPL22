@@ -19,6 +19,7 @@
 const data = {
     labels: cData.label,
     datasets: [{
+
         label: 'Graphic Pemesanan Per Jenis Bus',
         backgroundColor: [
         'rgb(255, 99, 132)',
@@ -34,7 +35,7 @@ const config = {
   type: 'bar',
   data: data,
   options: {
-
+    responsive: true,
   },
 };
 
