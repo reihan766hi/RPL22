@@ -2,6 +2,7 @@
     return [
 
         'admin' => 'Admin',
-        'manajer' => 'Manajer'
+        'manajer' => 'Manajer',
+        'pemesan' => 'Pemesan'
     ]
 ?>

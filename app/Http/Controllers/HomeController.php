@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\SifatPemesanan;
 Use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class HomeController extends Controller
@@ -57,7 +58,16 @@ class HomeController extends Controller
                 ->get(['produks.*','daftar_areas.*','daftar_buses.*']);
 
         }
-        return view('pemesan.home.index',compact(['daftarproduk','daftararea1','daftarbus','daftarsifat']));
+
+        if(auth()->check()){
+            if(auth()->user()->role == config('constanta.admin'))
+                return redirect('/dashboard');
+            else
+                return view('pemesan.home.index',compact(['daftarproduk','daftararea1','daftarbus','daftarsifat']));
+        }
+        else
+            return view('pemesan.home.index',compact(['daftarproduk','daftararea1','daftarbus','daftarsifat']));
+
     }
 
     public function indexAdmin(Request $request){
